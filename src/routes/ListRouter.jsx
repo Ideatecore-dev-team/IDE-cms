@@ -4,6 +4,8 @@ import App from "../App";
 import AuthenticatedRouter from "../components/AuthenticatedRouter";
 import Dashboard from "../pages/dashboard";
 import Article from "../pages/article";
+import Auth from "../pages/auth";
+import ChangePassword from "../pages/auth/ChangePassword";
 
 const ListRouter = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const ListRouter = createBrowserRouter([
           {
             path: "/article",
             element: <Article />,
+          },
+          {
+            path: "/auth",
+            element: <Auth />,
+          },
+          {
+            path: "/auth/change-password",
+            element: <ChangePassword />,
           },
         ],
       },

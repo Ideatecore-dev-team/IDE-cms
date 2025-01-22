@@ -10,4 +10,5 @@ const apiSlice = createApi({
   // eslint-disable-next-line no-unused-vars
   endpoints: (builder) => ({}),
 });
+
 export default apiSlice;
