@@ -18,7 +18,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 
-import logoholder from "../../assets/images/logoholder.png";
+import IDELogo from "../../assets/images/IDELogo.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -67,10 +67,10 @@ const Login = () => {
         <Col
           id="login"
           md={5}
-          className="border border-dark border-0 rounded-3 p-4 shadow"
+          className="border border-dark border-0 rounded-3 p-4 shadow bg-white"
         >
           <Col>
-            <Image src={logoholder} className="w-50 mb-3" />
+            <Image src={IDELogo} className="w-50 mb-3" />
             <h4 className="fw-bold">Content Management System</h4>
             <p>Kelola Website IDE-Indonesia disini</p>
           </Col>

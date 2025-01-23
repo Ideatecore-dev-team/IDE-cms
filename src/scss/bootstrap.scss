@@ -24,4 +24,23 @@ $spacers: (
   8: $spacer * 12,
 ) !default;
 
+// Custom width utilities
+$custom-widths: ();
+
+@for $i from 5 through 100 {
+  $custom-widths: map-merge(
+    $custom-widths,
+    (
+      $i: unquote("#{$i}%"),
+    )
+  );
+}
+
+// Generate width utilities
+@each $key, $value in $custom-widths {
+  .w-#{$key} {
+    width: $value !important;
+  }
+}
+
 @import "../../node_modules/bootstrap/scss/bootstrap";

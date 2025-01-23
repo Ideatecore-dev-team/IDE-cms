@@ -25,7 +25,7 @@ const ChangePassword = () => {
 
   const changePasswordSubmit = async (data) => {
     try {
-      console.log(data);
+      //   console.log(data);
       const { oldPassword, newPassword } = data; // Extract only the required fields
       await changePassword({ oldPassword, newPassword }).unwrap();
       dispatch(removeUserInfo());
@@ -38,7 +38,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <Container className="vh-100 d-flex align-items-center justify-content-center">
+    <Container className="vh-100 d-flex align-items-center justify-content-center p-0">
       <Row className="w-100 bg-white p-2 rounded-3 shadow">
         <Col>
           <h1>Change Password</h1>

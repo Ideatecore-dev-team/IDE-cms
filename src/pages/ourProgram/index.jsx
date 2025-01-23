@@ -1,13 +1,13 @@
 import ContentLayout from "../../components/layout/ContentLayout";
 
-const Article = () => {
+const OurProgram = () => {
   return (
     <ContentLayout>
       <div className="border border-1 border-primary">
-        <h1>Article</h1>
-        <p>Ini halaman Article</p>
+        <h1>OurProgram</h1>
+        <p>Ini halaman OurProgram</p>
       </div>
     </ContentLayout>
   );
 };
-export default Article;
+export default OurProgram;

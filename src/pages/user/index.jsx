@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useGetUserQuery } from "../../services/apis/authApi";
 import { Spinner } from "react-bootstrap";
+import ContentLayout from "../../components/layout/ContentLayout";
 
 const Auth = () => {
   const { data: user, isLoading } = useGetUserQuery();
@@ -14,13 +15,16 @@ const Auth = () => {
   }
 
   return (
-    <div>
-      <h1>Auth</h1>
-      <p>{user?.data?.name}</p>
-      <p>{user?.data?.email}</p>
-      <p>{user?.data?.role}</p>
-      <Link to={"/auth/change-password"}>Change Password</Link>
-    </div>
+    <ContentLayout>
+      <div className="border border-1 border-primary">
+        test
+        <h1>User</h1>
+        <p>{user?.data?.name}</p>
+        <p>{user?.data?.email}</p>
+        <p>{user?.data?.role}</p>
+        <Link to={"/user/change-password"}>Change Password</Link>
+      </div>
+    </ContentLayout>
   );
 };
 export default Auth;

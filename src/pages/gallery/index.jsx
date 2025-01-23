@@ -1,13 +1,13 @@
 import ContentLayout from "../../components/layout/ContentLayout";
 
-const Article = () => {
+const Gallery = () => {
   return (
     <ContentLayout>
       <div className="border border-1 border-primary">
-        <h1>Article</h1>
-        <p>Ini halaman Article</p>
+        <h1>Gallery</h1>
+        <p>Ini halaman Gallery</p>
       </div>
     </ContentLayout>
   );
 };
-export default Article;
+export default Gallery;
