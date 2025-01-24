@@ -18,6 +18,11 @@ const Akun = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
 
+  const { data: allUser, isLoading, isError } = useGetAllUserQuery();
+
+  const [deleteUser, { isLoading: isLoadingDelete }] =
+    useDeleteUserByIdMutation();
+
   const handleShow = (id) => {
     setSelectedUserId(id);
     setShowModal(true);
@@ -28,13 +33,6 @@ const Akun = () => {
       setShowModal(false);
     }
   };
-
-  const handleConfirmDeleteUser = (id) => {
-    handleDeleteUser(id);
-  };
-
-  const [deleteUser, { isLoading: isLoadingDelete }] =
-    useDeleteUserByIdMutation();
 
   const handleDeleteUser = async (id) => {
     try {
@@ -49,8 +47,6 @@ const Akun = () => {
       }
     }
   };
-
-  const { data: allUser, isLoading, isError } = useGetAllUserQuery();
 
   return (
     <ContentLayout>
@@ -85,47 +81,58 @@ const Akun = () => {
         {isError && <div>Error</div>}
 
         <Row>
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col" className="text-center">
-                  No.
-                </th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Role</th>
-                <th scope="col" className="text-center">
-                  Manage
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {allUser?.data?.map((user, index) => (
-                <tr key={user.id}>
-                  <th scope="row" className="text-center align-middle">
-                    {index + 1}
+          <Col className="p-0">
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col" className="text-center">
+                    No.
                   </th>
-                  <td className="align-middle">{user.name}</td>
-                  <td className="align-middle">{user.email}</td>
-                  <td className="align-middle small">{user.role}</td>
-                  <td className="d-flex justify-content-evenly">
-                    <Link to={`/acount/edituser/${user.id}`}>
-                      <Button variant="primary" className="btn-sm px-2">
-                        <MdOutlineEdit className="fs-4" />
-                      </Button>
-                    </Link>
-                    <Button
-                      variant="secondary"
-                      className="btn-sm p-0"
-                      onClick={() => handleShow(user.id)}
-                    >
-                      <MdOutlineDeleteForever className="fs-4" />
-                    </Button>
-                  </td>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Role</th>
+                  <th scope="col" className="text-center">
+                    Manage
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {allUser?.data?.map((user, index) => (
+                  <tr key={user.id}>
+                    <th scope="row" className="text-center align-middle">
+                      {index + 1}
+                    </th>
+                    <td className="align-middle">{user.name}</td>
+                    <td className="align-middle">{user.email}</td>
+                    <td className="align-middle small">{user.role}</td>
+                    <td className="d-flex justify-content-evenly">
+                      <Row className="gap-2">
+                        <Col className="p-0">
+                          <Link
+                            to={`/acount/edituser/${user.id}`}
+                            className="text-decoration-none"
+                          >
+                            <Button variant="primary" className="btn-sm px-2">
+                              <MdOutlineEdit className="fs-4" />
+                            </Button>
+                          </Link>
+                        </Col>
+                        <Col className="p-0">
+                          <Button
+                            variant="secondary"
+                            className="btn-sm px-2"
+                            onClick={() => handleShow(user.id)}
+                          >
+                            <MdOutlineDeleteForever className="fs-4" />
+                          </Button>
+                        </Col>
+                      </Row>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </Col>
         </Row>
       </Container>
 
@@ -139,7 +146,7 @@ const Akun = () => {
           </Button>
           <Button
             variant="primary"
-            onClick={() => handleConfirmDeleteUser(selectedUserId)}
+            onClick={() => handleDeleteUser(selectedUserId)}
             disabled={isLoadingDelete}
             className="w-15"
           >

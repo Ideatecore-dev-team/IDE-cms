@@ -3,9 +3,9 @@ import ContentLayout from "../../components/layout/ContentLayout";
 const Media = () => {
   return (
     <ContentLayout>
-      <div className="border border-1 border-primary">
+      <div className="">
         <h1>Media</h1>
-        <p>Ini halaman Media</p>
+        <p>Coming soon</p>
       </div>
     </ContentLayout>
   );

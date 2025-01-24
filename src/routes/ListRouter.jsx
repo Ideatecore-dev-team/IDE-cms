@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../pages/login";
 import App from "../App";
-import AuthenticatedRouter from "../components/AuthenticatedRouter";
+import AuthenticatedRouter from "./AuthenticatedRouter";
 import Home from "../pages/home";
 import Article from "../pages/article";
 import Auth from "../pages/user";
@@ -14,7 +14,10 @@ import Gallery from "../pages/gallery";
 import Media from "../pages/media";
 import AddUser from "../pages/akun/AddUser";
 import EditUser from "../pages/akun/EditUser";
-import SuperAdminRouter from "../components/SuperAdminRouter";
+import SuperAdminRouter from "./SuperAdminRouter";
+import AddArticle from "../pages/article/AddArticle";
+import NotFound from "../pages/notFound";
+import AddCategory from "../pages/article/AddCategory";
 
 const ListRouter = createBrowserRouter([
   // Public Routes
@@ -59,9 +62,18 @@ const ListRouter = createBrowserRouter([
             path: "/umum",
             element: <Umum />,
           },
+          // Article Pages
           {
             path: "/article",
             element: <Article />,
+          },
+          {
+            path: "/article/addarticle",
+            element: <AddArticle />,
+          },
+          {
+            path: "/article/addcategory",
+            element: <AddCategory />,
           },
 
           // Media Pages
@@ -95,6 +107,12 @@ const ListRouter = createBrowserRouter([
         ],
       },
     ],
+  },
+
+  // not found
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

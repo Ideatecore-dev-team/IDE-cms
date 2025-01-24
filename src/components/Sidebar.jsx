@@ -2,6 +2,7 @@ import { Button, Col, Row, Spinner, Modal, Image } from "react-bootstrap";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useGetUserQuery, useLogoutMutation } from "../services/apis/authApi";
+import apiSlice from "../services/apis/apiSlice";
 import { removeUserInfo } from "../services/reducers/authSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -42,8 +43,9 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     try {
-      await logout().unwrap();
       dispatch(removeUserInfo());
+      await logout().unwrap();
+      dispatch(apiSlice.util.resetApiState());
       toast.success("Logout success");
       navigate("/login");
     } catch (error) {

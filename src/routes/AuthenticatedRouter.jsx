@@ -5,6 +5,7 @@ import {
 } from "react-redux";
 // import { useGetUserQuery } from "../services/apis/authApi";
 // import { removeUserInfo } from "../services/reducers/authSlice";
+// import { toast } from "react-toastify";
 // import { Spinner, Container } from "react-bootstrap";
 
 const AuthenticatedRouter = () => {
@@ -16,6 +17,7 @@ const AuthenticatedRouter = () => {
   //   data: user,
   //   isLoading,
   //   isError,
+  //   error,
   // } = useGetUserQuery(null, {
   //   skip: !userInfo, // Skip the query if userInfo is not available
   // });
@@ -35,6 +37,15 @@ const AuthenticatedRouter = () => {
   // if (isError) {
   //   console.log("error fetching user data", isError);
   //   // dispatch(removeUserInfo());
+  //   return <Navigate to="/login" replace />;
+  // }
+
+  // console.log(error);
+
+  // if (error?.data?.status === "errorToken") {
+  //   console.log("error fetching user data", isError);
+  //   dispatch(removeUserInfo());
+  //   toast.error(error?.data?.message || error?.error);
   //   return <Navigate to="/login" replace />;
   // }
 

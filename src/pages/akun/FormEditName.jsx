@@ -36,7 +36,6 @@ const FormEditName = ({ id, name }) => {
     }
   };
 
-  console.log(name);
   return (
     <Form onSubmit={handleSubmit(handleUpdateUserById)}>
       <Form.Group controlId="name" className="mb-3">
