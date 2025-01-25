@@ -1,6 +1,10 @@
 import { format } from "date-fns";
 import { Button, Col, Row } from "react-bootstrap";
-import { MdOutlineDeleteForever, MdOutlineEdit } from "react-icons/md";
+import {
+  MdOutlineDeleteForever,
+  MdOutlineEdit,
+  MdOpenInNew,
+} from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const ArticleTable = ({ articles, handleShow }) => {
@@ -32,16 +36,27 @@ const ArticleTable = ({ articles, handleShow }) => {
               <td className="align-middle">
                 {format(new Date(article.createdAt), "dd MMM yyyy")}
               </td>
-              <td className="align-middle">{article.title.slice(0, 75)}</td>
+              <td className="align-middle">{article.title.slice(0, 70)}</td>
               <td className="align-middle">{article.Category.category}</td>
               <td className="d-flex justify-content-evenly">
                 <Row className="gap-2">
                   <Col className="p-0">
                     <Link
-                      to={`/article/edituser/${article.id}`}
+                      to={`/article/view/${article.id}`}
+                      target="_blank"
                       className="text-decoration-none"
                     >
-                      <Button variant="primary" className="btn-sm px-2">
+                      <Button variant="success" className="btn-sm px-1">
+                        <MdOpenInNew className="fs-4" />
+                      </Button>
+                    </Link>
+                  </Col>
+                  <Col className="p-0">
+                    <Link
+                      to={`/article/editarticle/${article.id}`}
+                      className="text-decoration-none"
+                    >
+                      <Button variant="primary" className="btn-sm px-1">
                         <MdOutlineEdit className="fs-4" />
                       </Button>
                     </Link>
@@ -49,7 +64,7 @@ const ArticleTable = ({ articles, handleShow }) => {
                   <Col className="p-0">
                     <Button
                       variant="secondary"
-                      className="btn-sm px-2"
+                      className="btn-sm px-1"
                       onClick={() => handleShow(article.id)}
                     >
                       <MdOutlineDeleteForever className="fs-4" />

@@ -1,9 +1,73 @@
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import ContentLayout from "../../components/layout/ContentLayout";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import {
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  Form,
+  Row,
+  ToggleButton,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MdAddBox } from "react-icons/md";
+import { useForm } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers/joi";
+
+import { useCreateArticleMutation } from "../../services/apis/articleApi";
+import ContentLayout from "../../components/layout/ContentLayout";
+import { createArticleSchema } from "./schema/articleSchema";
+import { useGetAllCategoryQuery } from "../../services/apis/categoryApi";
+import TextEditor from "./TextEditor";
+import { useNavigate } from "react-router-dom";
 
 const AddArticle = () => {
+  const navigate = useNavigate();
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
+
+  const [createArticle, { isLoading }] = useCreateArticleMutation();
+
+  const { data: categories, isLoading: isLoadingCategories } =
+    useGetAllCategoryQuery();
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    trigger,
+    reset,
+    setValue: setFormValue,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+    resolver: joiResolver(createArticleSchema),
+  });
+
+  const handleCreateArticle = async (data) => {
+    try {
+      const res = await createArticle(data).unwrap();
+      reset();
+      toast.success("Create article success");
+      navigate(`/article/view/${res.data.id}`);
+    } catch (error) {
+      toast.error(error?.data?.message || error?.error);
+    }
+  };
+
+  const handleCategoryChange = (categoryId) => {
+    setSelectedCategoryId(categoryId);
+    setValue("categoryId", categoryId); // Sync with React Hook Form
+    trigger("categoryId"); // Trigger validation manually after the category is changed
+  };
+
+  const handleEditorChange = (content) => {
+    console.log(content);
+    setFormValue("content", content); // Sync Quill content with React Hook Form
+    trigger("content");
+  };
+
   return (
     <ContentLayout>
       <Container>
@@ -31,42 +95,116 @@ const AddArticle = () => {
 
         <Row>
           <Col>
-            <Form>
-              <Form.Group>
-                <Form.Label>form satu</Form.Label>
-                <Form.Control type="text" placeholder="Masukan judul artikel" />
-                <Form.Text>form text satu</Form.Text>
+            <Form onSubmit={handleSubmit(handleCreateArticle)}>
+              <Form.Group controlId="image" className="mb-3">
+                <Form.Label>Thumbnail Artikel</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Masukan url gambar"
+                  {...register("image")}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                />
+                <Form.Text>
+                  <p className="text-danger isErrorMessage">
+                    {errors.image && errors.image.message}
+                  </p>
+                </Form.Text>
+
+                {imageUrl && (
+                  <div className="mt-3 d-flex justify-content-center">
+                    <img
+                      src={imageUrl}
+                      alt="Preview"
+                      className="img-fluid rounded border border-5 border-scondary"
+                      style={{
+                        maxHeight: "500px",
+                        objectFit: "contain",
+                      }}
+                    />
+                  </div>
+                )}
               </Form.Group>
 
-              <Form.Group>
-                <Form.Label>form dua</Form.Label>
-                <Form.Control type="text" placeholder="Masukan judul artikel" />
-                <Form.Text>form text dua</Form.Text>
+              <Form.Group controlId="title" className="mb-3">
+                <Form.Label>Judul</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Masukan judul artikel"
+                  {...register("title")}
+                />
+                <Form.Text>
+                  <p className="text-danger isErrorMessage">
+                    {errors.title && errors.title.message}
+                  </p>
+                </Form.Text>
               </Form.Group>
 
-              <Form.Group>
-                <Form.Label>form dua</Form.Label>
-                <Form.Control type="text" placeholder="Masukan judul artikel" />
-                <Form.Text>form text dua</Form.Text>
+              <Form.Group controlId="categoryId" className="mb-3">
+                <Form.Label>Kategori</Form.Label>
+                <ButtonGroup className="mb-3 d-flex flex-wrap gap-2">
+                  {isLoadingCategories && (
+                    <span className="spinner-border spinner-border-sm"></span>
+                  )}
+                  {categories &&
+                    categories.data.map((category) => (
+                      <ToggleButton
+                        type="radio"
+                        variant="outline-dark"
+                        name="categoryId" // Matches the registered field name
+                        checked={selectedCategoryId === category.id} // Sync local state for visual feedback
+                        key={category.id}
+                        className="btn-sm px-3 rounded-1 flex-grow-0"
+                        onClick={() => handleCategoryChange(category.id)}
+                      >
+                        {category.category}
+                      </ToggleButton>
+                    ))}
+                </ButtonGroup>
+
+                <Form.Text>
+                  <p className="text-danger isErrorMessage">
+                    {errors.categoryId && errors.categoryId.message}
+                  </p>
+                </Form.Text>
               </Form.Group>
 
-              <Form.Group>
-                <Form.Label>form dua</Form.Label>
-                <Form.Control type="text" placeholder="Masukan judul artikel" />
-                <Form.Text>form text dua</Form.Text>
-              </Form.Group>
-
-              <Form.Group>
-                <Form.Label>form dua</Form.Label>
+              <Form.Group controlId="description" className="mb-3">
+                <Form.Label>Deskripsi</Form.Label>
                 <Form.Control
                   as="textarea"
-                  rows={7}
-                  placeholder="Masukan judul artikel"
+                  rows={5}
+                  placeholder="Masukan deskripsi"
+                  {...register("description")}
                 />
-                <Form.Text>form text dua</Form.Text>
+                <Form.Text>
+                  <p className="text-danger isErrorMessage">
+                    {errors.description && errors.description.message}
+                  </p>
+                </Form.Text>
               </Form.Group>
 
-              <Button type="submit">Simpan</Button>
+              <Form.Group controlId="content" className="mb-3">
+                <Form.Label>Artikel</Form.Label>
+                <TextEditor handleEditorChange={handleEditorChange} />
+
+                <Form.Text>
+                  <p className="text-danger isErrorMessage">
+                    {errors.content && errors.content.message}
+                  </p>
+                </Form.Text>
+              </Form.Group>
+
+              <Button
+                type="submit"
+                className="float-end w-20"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <span className="spinner-border spinner-border-sm"></span>
+                ) : (
+                  "Simpan"
+                )}
+              </Button>
             </Form>
           </Col>
         </Row>

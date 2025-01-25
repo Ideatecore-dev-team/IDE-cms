@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./assets/css/bootstrap.css";
 import "./assets/css/styles.css";
+import "quill/dist/quill.snow.css"; // Include the Quill stylesheet
 
 import ListRouter from "./routes/ListRouter.jsx";
 import store from "./services/store.js";

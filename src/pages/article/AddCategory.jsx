@@ -172,7 +172,9 @@ const AddCategory = () => {
 
       {/* Modal for Deleting User */}
       <Modal show={showModal} onHide={handleClose} centered>
-        <Modal.Header closeButton>Confirm Delete User</Modal.Header>
+        <Modal.Header closeButton>
+          Confirm update or delete category
+        </Modal.Header>
         <Modal.Body>
           Are you sure want to update or delete this category
           <Form onSubmit={handleSubmitUpdate(handleUpdateCategory)}>

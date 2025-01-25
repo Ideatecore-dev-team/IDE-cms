@@ -18,6 +18,8 @@ import SuperAdminRouter from "./SuperAdminRouter";
 import AddArticle from "../pages/article/AddArticle";
 import NotFound from "../pages/notFound";
 import AddCategory from "../pages/article/AddCategory";
+import ArticleView from "../pages/article/ArticleView";
+import EditArticle from "../pages/article/EditArticle";
 
 const ListRouter = createBrowserRouter([
   // Public Routes
@@ -75,7 +77,14 @@ const ListRouter = createBrowserRouter([
             path: "/article/addcategory",
             element: <AddCategory />,
           },
-
+          {
+            path: "/article/view/:id",
+            element: <ArticleView />,
+          },
+          {
+            path: "/article/editarticle/:id",
+            element: <EditArticle />,
+          },
           // Media Pages
           {
             path: "/gallery",
