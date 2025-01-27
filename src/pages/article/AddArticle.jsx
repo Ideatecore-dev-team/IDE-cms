@@ -50,7 +50,7 @@ const AddArticle = () => {
       const res = await createArticle(data).unwrap();
       reset();
       toast.success("Create article success");
-      navigate(`/article/view/${res.data.id}`);
+      navigate(`/article/editarticle/${res.data.id}`);
     } catch (error) {
       toast.error(error?.data?.message || error?.error);
     }

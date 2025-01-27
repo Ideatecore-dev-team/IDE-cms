@@ -16,6 +16,60 @@ body {
   background-color: #eef1f4;
 }
 
+.isQuillEditor {
+  min-height: 75vh;
+  max-height: 75vh;
+  overflow-y: auto;
+  border: 1px solid #eef1f4;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Style the Quill editor container */
+// .quill-editor-container {
+//   position: relative;
+//   min-height: 400px; /* Set a minimum height for the editor */
+// }
+
+/* Style the toolbar container to position it at the bottom */
+// .quill-editor-container .ql-toolbar {
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 10;
+//   background-color: white; /* Optional */
+//   box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2); /* Optional for styling */
+// }
+
+/* Ensure the content area doesn't overlap the toolbar */
+// .quill-editor-container .ql-container {
+//   padding-bottom: 50px; /* Adjust according to toolbar height */
+// }
+
 // .bottom-shadow {
 //   box-shadow: 0 4px 6px -6px rgba(0, 0, 0, 0.5); /* Adjust values to your liking */
+// }
+
+/* Customize blockquote style */
+// .ql-editor blockquote {
+//   border-left: 4px solid #ccc;
+//   margin-left: 0;
+//   margin-right: 0;
+//   padding-left: 1em;
+//   color: #555;
+// }
+
+// /* Customize code block style */
+// .ql-editor pre {
+//   background-color: #f4f4f4;
+//   padding: 1em;
+//   border-radius: 4px;
+// }
+// .ql-editor code {
+//   font-family: monospace;
 // }

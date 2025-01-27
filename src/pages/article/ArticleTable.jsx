@@ -36,14 +36,16 @@ const ArticleTable = ({ articles, handleShow }) => {
               <td className="align-middle">
                 {format(new Date(article.createdAt), "dd MMM yyyy")}
               </td>
-              <td className="align-middle">{article.title.slice(0, 70)}</td>
-              <td className="align-middle">{article.Category.category}</td>
+              <td className="align-middle">{article.title.slice(0, 65)}</td>
+              <td className="align-middle">
+                {article.Category.category.slice(0, 15)}
+              </td>
               <td className="d-flex justify-content-evenly">
                 <Row className="gap-2">
                   <Col className="p-0">
                     <Link
                       to={`/article/view/${article.id}`}
-                      target="_blank"
+                      // target="_blank"
                       className="text-decoration-none"
                     >
                       <Button variant="success" className="btn-sm px-1">

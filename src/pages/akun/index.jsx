@@ -60,6 +60,7 @@ const Akun = () => {
             </p>
           </Col>
         </Row>
+
         <Row className="mb-3 isContentBgColor rounded-3 ">
           <Col className="align-self-center">
             <h2 className="mt-2">Akun Admin</h2>
@@ -97,39 +98,45 @@ const Akun = () => {
                 </tr>
               </thead>
               <tbody>
-                {allUser?.data?.map((user, index) => (
-                  <tr key={user.id}>
-                    <th scope="row" className="text-center align-middle">
-                      {index + 1}
-                    </th>
-                    <td className="align-middle">{user.name}</td>
-                    <td className="align-middle">{user.email}</td>
-                    <td className="align-middle small">{user.role}</td>
-                    <td className="d-flex justify-content-evenly">
-                      <Row className="gap-2">
-                        <Col className="p-0">
-                          <Link
-                            to={`/acount/edituser/${user.id}`}
-                            className="text-decoration-none"
-                          >
-                            <Button variant="primary" className="btn-sm px-2">
-                              <MdOutlineEdit className="fs-4" />
-                            </Button>
-                          </Link>
-                        </Col>
-                        <Col className="p-0">
-                          <Button
-                            variant="secondary"
-                            className="btn-sm px-2"
-                            onClick={() => handleShow(user.id)}
-                          >
-                            <MdOutlineDeleteForever className="fs-4" />
-                          </Button>
-                        </Col>
-                      </Row>
-                    </td>
-                  </tr>
-                ))}
+                {allUser?.data?.map(
+                  (user, index) =>
+                    user.role === "ADMIN" && (
+                      <tr key={user.id}>
+                        <th scope="row" className="text-center align-middle">
+                          {index + 1}
+                        </th>
+                        <td className="align-middle">{user.name}</td>
+                        <td className="align-middle">{user.email}</td>
+                        <td className="align-middle small">{user.role}</td>
+                        <td className="d-flex justify-content-evenly">
+                          <Row className="gap-2">
+                            <Col className="p-0">
+                              <Link
+                                to={`/acount/edituser/${user.id}`}
+                                className="text-decoration-none"
+                              >
+                                <Button
+                                  variant="primary"
+                                  className="btn-sm px-2"
+                                >
+                                  <MdOutlineEdit className="fs-4" />
+                                </Button>
+                              </Link>
+                            </Col>
+                            <Col className="p-0">
+                              <Button
+                                variant="secondary"
+                                className="btn-sm px-2"
+                                onClick={() => handleShow(user.id)}
+                              >
+                                <MdOutlineDeleteForever className="fs-4" />
+                              </Button>
+                            </Col>
+                          </Row>
+                        </td>
+                      </tr>
+                    ),
+                )}
               </tbody>
             </table>
           </Col>

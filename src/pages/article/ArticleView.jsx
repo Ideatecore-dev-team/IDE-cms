@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import ContentLayout from "../../components/layout/ContentLayout";
 import { useParams } from "react-router-dom";
 import { useGetArticleByIdQuery } from "../../services/apis/articleApi";
+import "quill/dist/quill.snow.css"; // Include the Quill stylesheet
 
 const ArticleView = () => {
   const { id } = useParams();
@@ -10,10 +11,10 @@ const ArticleView = () => {
 
   return (
     <ContentLayout>
-      <Container>
+      <Container style={{ maxWidth: "600px" }} className="rounded p-4">
         {article && (
           <>
-            <Row className="mb-3">
+            <Row className="mb-5">
               <Col className="d-flex justify-content-center">
                 <Image src={article.data.image} fluid />
               </Col>
@@ -36,10 +37,10 @@ const ArticleView = () => {
 
             <Row className="mb-3">
               <Col>
-                <h6 className="text-decoration-none text-dark">
+                <h6 className="text-decoration-none text-dark m-0">
                   {article.data.User.name}
                 </h6>
-                <small className="text-decoration-none text-dark">
+                <small className="text-decoration-none text-dark m-0">
                   {format(new Date(article.data.createdAt), "dd MMM yyyy")}
                 </small>
               </Col>

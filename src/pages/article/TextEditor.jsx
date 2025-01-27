@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import Quill from "quill";
+import "../../assets/css/custom-fonts.css";
+import "quill/dist/quill.snow.css"; // Ensure this is imported for toolbar styles
 
 const TextEditor = ({ handleEditorChange }) => {
   const editorRef = useRef(null);
@@ -12,18 +14,18 @@ const TextEditor = ({ handleEditorChange }) => {
         modules: {
           toolbar: {
             container: [
-              [{ font: [] }],
-              [{ size: ["small", false, "large", "huge"] }],
-              [{ align: [] }],
-              ["bold", "italic", "underline", "strike"],
-              [{ list: "ordered" }, { list: "bullet" }],
-              ["link", "image"],
-              // [{ header: [1, 2, 3, 4, 5, 6, false] }],
-              // ["blockquote", "code-block"],
-              // [{ script: "sub" }, { script: "super" }],
-              // [{ indent: "-1" }, { indent: "+1" }],
-              // [{ direction: "rtl" }],
-              [{ color: [] }, { background: [] }],
+              // Toolbar options for formatting
+              [{ font: [] }], // Font options (updated whitelist)
+              [{ header: [1, 2, 3, 4, 5, 6, false] }], // Header options
+              [{ size: ["small", false, "large", "huge"] }], // Font size options
+              [{ align: [] }], // Text alignment options (left, center, right)
+              ["bold", "italic", "underline", "strike"], // Basic formatting options
+              [{ list: "ordered" }, { list: "bullet" }], // Ordered and bulleted lists
+              ["link", "image"], // Link and image insertion options
+              [{ color: [] }, { background: [] }], // Text and background color options
+              [{ indent: "-1" }, { indent: "+1" }], // Indentation options
+              [{ script: "sub" }, { script: "super" }], // Subscript/Superscript
+              ["blockquote", "code-block"], // Blockquote and code block
             ],
             handlers: {
               image: () => {
@@ -33,16 +35,31 @@ const TextEditor = ({ handleEditorChange }) => {
                   quill.insertEmbed(range.index, "image", imageUrl);
                 }
               },
-              // video: () => {
-              //   const videoUrl = prompt("Enter video URL");
-              //   if (videoUrl) {
-              //     const range = quill.getSelection();
-              //     quill.insertEmbed(range.index, "video", videoUrl);
-              //   }
-              // },
             },
           },
         },
+
+        formats: [
+          // Supported editor formats
+          "font",
+          "header",
+          "size",
+          "align",
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "list",
+          "bullet",
+          "link",
+          "image",
+          "color",
+          "background",
+          "indent",
+          "script",
+          "blockquote",
+          "code-block",
+        ],
       });
 
       // Store the instance in the DOM element to check if it's already initialized
@@ -59,7 +76,7 @@ const TextEditor = ({ handleEditorChange }) => {
 
   return (
     <div>
-      <div ref={editorRef} style={{ minHeight: "250px" }} />
+      <div ref={editorRef} className="isQuillEditor" />
     </div>
   );
 };

@@ -10,7 +10,7 @@ import {
   Spinner,
   ToggleButton,
 } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MdAddBox } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -27,7 +27,7 @@ import { toast } from "react-toastify";
 import TextEditorUpdate from "./TextEditorUpdate";
 
 const EditArticle = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { id } = useParams();
   const [imagePreview, setImagePreview] = useState("");
   const [selectCategoryId, setSelectCategory] = useState("");
@@ -67,12 +67,11 @@ const EditArticle = () => {
 
   const handleEditArticle = async (data) => {
     try {
-      console.log(data);
-      const res = await updateArticle({ id, data }).unwrap();
+      await updateArticle({ id, data }).unwrap();
+      // const res = await updateArticle({ id, data }).unwrap();
       toast.success("Update Article success");
-      navigate(`/article/view/${res.data.id}`);
+      // navigate(`/article/view/${res.data.id}`);
     } catch (error) {
-      console.log(error);
       toast.error(error?.data?.message || error?.error);
     }
   };
@@ -175,7 +174,7 @@ const EditArticle = () => {
                   </ButtonGroup>
                   <Form.Text>
                     <p className="text-danger isErrorMessage">
-                      {errors.title && errors.title.message}
+                      {errors.category && errors.category.message}
                     </p>
                   </Form.Text>
                 </Form.Group>
@@ -197,13 +196,15 @@ const EditArticle = () => {
 
                 <Form.Group controlId="content" className="mb-3">
                   <Form.Label>Artikel</Form.Label>
-                  <TextEditorUpdate
-                    value={selectContent}
-                    onChange={(content) => {
-                      setSelectContent(content); // Update the state
-                      setValue("content", content); // Update react-hook-form
-                    }}
-                  />
+                  <div>
+                    <TextEditorUpdate
+                      value={selectContent}
+                      onChange={(content) => {
+                        setSelectContent(content); // Update the state
+                        setValue("content", content); // Update react-hook-form
+                      }}
+                    />
+                  </div>
                   <Form.Text>
                     <p className="text-danger isErrorMessage">
                       {errors.content && errors.content.message}

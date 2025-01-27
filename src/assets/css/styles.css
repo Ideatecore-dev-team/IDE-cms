@@ -15,3 +15,21 @@ body {
 .isActiveNav {
   background-color: #eef1f4;
 }
+
+.isQuillEditor {
+  min-height: 75vh;
+  max-height: 75vh;
+  overflow-y: auto;
+  border: 1px solid #eef1f4;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Style the Quill editor container */
+/* Style the toolbar container to position it at the bottom */
+/* Ensure the content area doesn't overlap the toolbar */
+/* Customize blockquote style */

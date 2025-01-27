@@ -1,10 +1,25 @@
 import { useEffect, useRef } from "react";
 import Quill from "quill";
 
+/**
+ * A React component for a rich text editor using the Quill library.
+ *
+ * Props:
+ *  - value (string): The initial or updated content of the editor.
+ *  - onChange (function): A callback function that is called whenever the editor content changes.
+ */
 const TextEditorUpdate = ({ value, onChange }) => {
-  const editorRef = useRef(null);
-  const quillInstance = useRef(null);
+  const editorRef = useRef(null); // A reference to the DOM element where Quill will be initialized
+  const quillInstance = useRef(null); // A reference to the Quill editor instance
 
+  /**
+   * Handles image insertion into the editor.
+   *
+   * Prompts the user for an image URL and inserts the image at the current cursor position
+   * if a valid URL is provided.
+   *
+   * @param {object} quill - The Quill editor instance
+   */
   const handleImageInsert = (quill) => {
     const imageUrl = prompt("Enter the image URL:");
     if (imageUrl) {
@@ -13,39 +28,73 @@ const TextEditorUpdate = ({ value, onChange }) => {
     }
   };
 
+  // Initialize Quill editor and event listeners
   useEffect(() => {
     if (!quillInstance.current) {
       // Initialize Quill only once
       quillInstance.current = new Quill(editorRef.current, {
-        theme: "snow",
-        placeholder: "Type your content here...",
+        theme: "snow", // Set the editor theme (snow for a clean look)
+        placeholder: "Type your content here...", // Display a placeholder text
+
         modules: {
           toolbar: {
             container: [
-              [{ font: [] }],
-              [{ size: ["small", false, "large", "huge"] }],
-              [{ align: [] }],
-              ["bold", "italic", "underline", "strike"],
-              [{ list: "ordered" }, { list: "bullet" }],
-              ["link", "image"],
-              [{ color: [] }, { background: [] }],
+              // Toolbar options for formatting
+              [{ font: [] }], // Font options (updated whitelist)
+              [{ header: [1, 2, 3, 4, 5, 6, false] }], // Header options
+              [{ size: ["small", false, "large", "huge"] }], // Font size options
+              [{ align: [] }], // Text alignment options (left, center, right)
+              ["bold", "italic", "underline", "strike"], // Basic formatting options
+              [{ list: "ordered" }, { list: "bullet" }], // Ordered and bulleted lists
+              ["link", "image"], // Link and image insertion options
+              [{ color: [] }, { background: [] }], // Text and background color options
+              [{ indent: "-1" }, { indent: "+1" }], // Indentation options
+              [{ script: "sub" }, { script: "super" }], // Subscript/Superscript
+              ["blockquote", "code-block"], // Blockquote and code block
             ],
             handlers: {
-              image: () => handleImageInsert(quillInstance.current),
+              image: () => handleImageInsert(quillInstance.current), // Handle image insertion using the defined function
             },
           },
         },
+
+        formats: [
+          // Supported editor formats
+          "font",
+          "header",
+          "size",
+          "align",
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "list",
+          "bullet",
+          "link",
+          "image",
+          "color",
+          "background",
+          "indent",
+          "script",
+          "blockquote",
+          "code-block",
+        ],
       });
 
-      // Listen for text changes
+      // Set default styles for text and background
+      //   const editor = quillInstance.current.root;
+      //   editor.style.color = "#333"; // Default text color
+      //   editor.style.backgroundColor = "#f9f9f9"; // Default background color
+
+      // Listen for text changes and update the parent component
       quillInstance.current.on("text-change", () => {
         const content = quillInstance.current.root.innerHTML;
         onChange(content);
       });
     }
-  }, [onChange]); // Initialize only once
+  }, [onChange]); // Initialize only once when `onChange` prop changes
 
-  // Sync value with Quill editor
+  // Update editor content if the `value` prop changes
   useEffect(() => {
     if (quillInstance.current && value !== undefined) {
       const editorContent = quillInstance.current.root.innerHTML;
@@ -53,9 +102,9 @@ const TextEditorUpdate = ({ value, onChange }) => {
         quillInstance.current.root.innerHTML = value; // Update the content if it differs
       }
     }
-  }, [value]); // Runs whenever `value` changes
+  }, [value]); // Runs whenever the `value` prop changes
 
-  return <div ref={editorRef} style={{ minHeight: "300px" }} />;
+  return <div ref={editorRef} className="isQuillEditor" />;
 };
 
 export default TextEditorUpdate;
