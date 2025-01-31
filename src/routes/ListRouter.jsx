@@ -20,6 +20,9 @@ import NotFound from "../pages/notFound";
 import AddCategory from "../pages/article/AddCategory";
 import ArticleView from "../pages/article/ArticleView";
 import EditArticle from "../pages/article/EditArticle";
+import AddAboutUs from "../pages/aboutUs/AddAboutUs";
+import AddCategoryTeam from "../pages/aboutUs/AddCategoryTeam";
+import EditAboutUs from "../pages/aboutUs/EditAboutUs";
 
 const ListRouter = createBrowserRouter([
   // Public Routes
@@ -55,6 +58,18 @@ const ListRouter = createBrowserRouter([
           {
             path: "/aboutus",
             element: <AboutUs />,
+          },
+          {
+            path: "/aboutus/addaboutus",
+            element: <AddAboutUs />,
+          },
+          {
+            path: "/aboutus/addcategoryteam",
+            element: <AddCategoryTeam />,
+          },
+          {
+            path: "/aboutus/editaboutus/:id",
+            element: <EditAboutUs />,
           },
           {
             path: "/ourprogram",

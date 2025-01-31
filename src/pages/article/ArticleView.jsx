@@ -1,7 +1,8 @@
 import { Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import { format } from "date-fns";
-import ContentLayout from "../../components/layout/ContentLayout";
 import { useParams } from "react-router-dom";
+import DOMPurify from "dompurify";
+import ContentLayout from "../../components/layout/ContentLayout";
 import { useGetArticleByIdQuery } from "../../services/apis/articleApi";
 import "quill/dist/quill.snow.css"; // Include the Quill stylesheet
 
@@ -11,7 +12,7 @@ const ArticleView = () => {
 
   return (
     <ContentLayout>
-      <Container style={{ maxWidth: "600px" }} className="rounded p-4">
+      <Container style={{ maxWidth: "720px" }} className="rounded p-4">
         {article && (
           <>
             <Row className="mb-5">
@@ -54,7 +55,9 @@ const ArticleView = () => {
                 >
                   <div
                     className="ql-editor"
-                    dangerouslySetInnerHTML={{ __html: article.data.content }}
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(article.data.content),
+                    }}
                   />
                 </div>
               </Col>

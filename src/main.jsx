@@ -4,10 +4,10 @@ import { RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "quill/dist/quill.snow.css"; // Include the Quill stylesheet
 import "./assets/css/bootstrap.css";
 import "./assets/css/styles.css";
 import "./assets/css/custom-fonts.css";
-import "quill/dist/quill.snow.css"; // Include the Quill stylesheet
 
 import ListRouter from "./routes/ListRouter.jsx";
 import store from "./services/store.js";

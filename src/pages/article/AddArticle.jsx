@@ -63,7 +63,6 @@ const AddArticle = () => {
   };
 
   const handleEditorChange = (content) => {
-    console.log(content);
     setFormValue("content", content); // Sync Quill content with React Hook Form
     trigger("content");
   };

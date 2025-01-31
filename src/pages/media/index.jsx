@@ -94,7 +94,7 @@ const Media = () => {
   const handleImageDelete = async (url) => {
     try {
       await deleteMedia({ imageUrl: url }).unwrap();
-      toast.success("Delete article success");
+      toast.success("Delete media success");
     } catch (error) {
       toast.error(error?.data?.message || error?.error);
     } finally {
@@ -147,7 +147,7 @@ const Media = () => {
                   <div className="mt-3 d-flex justify-content-center">
                     <img
                       src={imagePreview}
-                      alt="Preview"
+                      alt={imagePreview}
                       className="img-fluid rounded border border-5 border-secondary"
                       style={{
                         maxHeight: "500px",
@@ -200,7 +200,7 @@ const Media = () => {
       </Container>
 
       {/* Modal to show full-size image */}
-      <Modal show={showModal} onHide={handleClose} centered size="md">
+      <Modal show={showModal} onHide={handleClose} centered size="lg">
         {/* <Modal.Header closeButton>
           <Modal.Title>Full-Size Image</Modal.Title>
         </Modal.Header> */}

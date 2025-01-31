@@ -33,3 +33,19 @@ body {
 /* Style the toolbar container to position it at the bottom */
 /* Ensure the content area doesn't overlap the toolbar */
 /* Customize blockquote style */
+/* Style for the code block container */
+.ql-code-block-container {
+  background-color: #ffffff !important; /* Light gray background */
+  border: 2px solid #d7d1d1; /* Optional: light border around the container */
+  border-radius: 5px; /* Optional: rounded corners */
+  overflow-x: auto;
+}
+
+/* Style for individual lines in the code block */
+.ql-code-block {
+  color: #000000; /* Dark gray text */
+  font-family: "Courier New", Courier, monospace; /* Monospaced font */
+  font-size: 14px; /* Adjust font size */
+  line-height: 1.5; /* Improve line spacing for readability */
+  white-space: pre-wrap; /* Preserve spacing and line breaks */
+}
