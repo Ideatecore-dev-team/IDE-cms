@@ -19,7 +19,7 @@ import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { toast } from "react-toastify";
 import { uploadSchema } from "./schema/uploadSchema";
-import MediaPagination from "./mediaPagination";
+import MediaPagination from "./MediaPagination";
 import { MdDelete } from "react-icons/md";
 
 const Media = () => {
