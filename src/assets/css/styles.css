@@ -1,0 +1,51 @@
+body {
+  background-color: #eef1f4;
+}
+
+.isContentBgColor {
+  background-color: #eef1f4;
+}
+
+.isErrorMessage {
+  height: 1rem;
+  margin: 0;
+  padding-top: 0.25rem;
+}
+
+.isActiveNav {
+  background-color: #eef1f4;
+}
+
+.isQuillEditor {
+  min-height: 75vh;
+  max-height: 75vh;
+  overflow-y: auto;
+  border: 1px solid #eef1f4;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Style the Quill editor container */
+/* Style the toolbar container to position it at the bottom */
+/* Ensure the content area doesn't overlap the toolbar */
+/* Customize blockquote style */
+/* Style for the code block container */
+.ql-code-block-container {
+  background-color: #ffffff !important; /* Light gray background */
+  border: 2px solid #d7d1d1; /* Optional: light border around the container */
+  border-radius: 5px; /* Optional: rounded corners */
+  overflow-x: auto;
+}
+
+/* Style for individual lines in the code block */
+.ql-code-block {
+  color: #000000; /* Dark gray text */
+  font-family: "Courier New", Courier, monospace; /* Monospaced font */
+  font-size: 14px; /* Adjust font size */
+  line-height: 1.5; /* Improve line spacing for readability */
+  white-space: pre-wrap; /* Preserve spacing and line breaks */
+}
