@@ -145,10 +145,10 @@ const Media = () => {
                 {/* Image Preview Section */}
                 {imagePreview && (
                   <div className="mt-3 d-flex justify-content-center">
-                    <img
+                    <Image
                       src={imagePreview}
                       alt={imagePreview}
-                      className="img-fluid rounded border border-5 border-secondary"
+                      className="img-fluid rounded border border-secondary"
                       style={{
                         maxHeight: "500px",
                         objectFit: "contain",
@@ -173,14 +173,23 @@ const Media = () => {
           </Col>
         </Row>
 
-        <Row className="g-3 mb-3">
+        <Row className="mb-4">
           {dataMedia?.images &&
             dataMedia?.images.map((item, index) => (
-              <Col md={4} xl={3} key={index} className="d-flex flex-wrap">
+              <Col
+                md={4}
+                xl={3}
+                key={index}
+                className="d-flex flex-wrap  justify-content-center p-1"
+              >
                 <Image
                   src={item}
                   fluid
-                  className="rounded border border-secondary"
+                  className="rounded "
+                  style={{
+                    objectFit: "contain",
+                    maxHeight: "350px",
+                  }}
                   onClick={() => handleImageClick(item)} // Handle image click
                 />
               </Col>
