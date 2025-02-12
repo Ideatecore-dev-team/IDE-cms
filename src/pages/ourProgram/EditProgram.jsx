@@ -10,34 +10,40 @@ import {
   Spinner,
   ToggleButton,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdAddBox } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 
 import ContentLayout from "../../components/layout/ContentLayout";
-import {
-  useGetArticleByIdQuery,
-  useUpdateArticleMutation,
-} from "../../services/apis/articleApi";
-import { useGetAllCategoryQuery } from "../../services/apis/categoryApi";
-import { createArticleSchema } from "./schema/articleSchema";
-import { toast } from "react-toastify";
-import TextEditorUpdate from "./TextEditorUpdate";
 
-const EditArticle = () => {
-  // const navigate = useNavigate();
+import { createProgramSchema } from "./schema/programSchema";
+import { toast } from "react-toastify";
+import TextEditor from "./TextEditor";
+import { useGetAllProgramCategoryQuery } from "../../services/apis/programCategoryApi";
+import {
+  useGetProgramByIdQuery,
+  useUpdateProgramMutation,
+} from "../../services/apis/programApi";
+
+const EditProgram = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [imagePreview, setImagePreview] = useState("");
   const [selectCategoryId, setSelectCategory] = useState("");
   const [selectContent, setSelectContent] = useState("");
 
-  const { data: article, isLoading, isError } = useGetArticleByIdQuery(id);
-  const { data: categories, isLoading: isLoadingCategories } =
-    useGetAllCategoryQuery();
-  const [updateArticle, { isLoading: isLoadingUpdate }] =
-    useUpdateArticleMutation();
+  const {
+    data: dataProgramCategory,
+    isLoading: isLoadingProgramCategory,
+    isError,
+  } = useGetAllProgramCategoryQuery();
+
+  const { data: dataProgram, isLoading: isLoadingProgram } =
+    useGetProgramByIdQuery(id);
+  const [updateProgram, { isLoading: isLoadingUpdate }] =
+    useUpdateProgramMutation();
 
   const {
     register,
@@ -47,30 +53,35 @@ const EditArticle = () => {
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    resolver: joiResolver(createArticleSchema),
+    resolver: joiResolver(createProgramSchema),
+    defaultValues: {
+      programCategoryId: "",
+      content: "",
+    },
   });
 
   useEffect(() => {
-    if (article) {
+    if (dataProgram) {
       reset({
-        image: article.data.image,
-        title: article.data.title,
-        categoryId: article.data.categoryId,
-        description: article.data.description,
-        content: article.data.content,
+        image: dataProgram.data.image,
+        title: dataProgram.data.title,
+        programCategoryId: dataProgram.data.programCategoryId,
+        description: dataProgram.data.description,
+        content: dataProgram.data.content,
       });
-      setImagePreview(article.data.image);
-      setSelectCategory(article.data.categoryId);
-      setSelectContent(article.data.content);
+      setImagePreview(dataProgram.data.image);
+      setSelectCategory(dataProgram.data.programCategoryId);
+      setSelectContent(dataProgram.data.content);
     }
-  }, [article, reset]);
+  }, [dataProgram, reset]);
 
-  const handleEditArticle = async (data) => {
+  const handleEditProgram = async (data) => {
     try {
-      await updateArticle({ id, data }).unwrap();
+      const res = await updateProgram({ id, data }).unwrap();
+      // await updateArticle({ id, data }).unwrap();
       // const res = await updateArticle({ id, data }).unwrap();
-      toast.success("Update Article success");
-      // navigate(`/article/view/${res.data.id}`);
+      toast.success("Create Program success");
+      navigate(`/ourprogram/editprogram/${res.data.id}`);
     } catch (error) {
       toast.error(error?.data?.message || error?.error);
     }
@@ -81,7 +92,7 @@ const EditArticle = () => {
       <Container>
         <Row className="border-bottom border-secondary mb-3">
           <Col className="px-0">
-            <h1>Edit Artikel</h1>
+            <h1>Add Program</h1>
             <p className="lead">Masukan data pada field yang tertera</p>
           </Col>
         </Row>
@@ -89,7 +100,7 @@ const EditArticle = () => {
         <Row className="mb-3 isContentBgColor rounded-3 py-2">
           <Col className="align-self-center text-end">
             <Link
-              to={"/article/addcategory"}
+              to={"/ourprogram/addprogramcategory"}
               target="_blank"
               rel="noopener noreferrer"
               className="text-decoration-none"
@@ -101,10 +112,10 @@ const EditArticle = () => {
           </Col>
         </Row>
 
-        {article && (
+        {dataProgram && (
           <Row className="mb-3">
             <Col>
-              <Form onSubmit={handleSubmit(handleEditArticle)}>
+              <Form onSubmit={handleSubmit(handleEditProgram)}>
                 <Form.Group controlId="image" className="mb-3">
                   <Form.Label>Thumbnail Artikel</Form.Label>
                   <Form.Control
@@ -152,29 +163,30 @@ const EditArticle = () => {
                 <Form.Group controlId="categoryId" className="mb-3">
                   <Form.Label>Kategori</Form.Label>
                   <ButtonGroup className="mb-3 d-flex flex-wrap gap-2">
-                    {isLoadingCategories && (
+                    {isLoadingProgramCategory && (
                       <span className="spinner-border spinner-border-sm"></span>
                     )}
-                    {categories &&
-                      categories?.data.map((category) => (
+                    {dataProgramCategory &&
+                      dataProgramCategory?.data.map((programCategory) => (
                         <ToggleButton
-                          key={category.id}
+                          key={programCategory.id}
                           className="btn-sm px-3 rounded-1 flex-grow-0"
                           variant="outline-dark"
                           type="radio"
-                          checked={category.id === selectCategoryId}
+                          checked={programCategory.id === selectCategoryId}
                           onClick={() => {
-                            setSelectCategory(category.id);
-                            setValue("categoryId", category.id);
+                            setSelectCategory(programCategory.id);
+                            setValue("programCategoryId", programCategory.id);
                           }}
                         >
-                          {category.category}
+                          {programCategory.name}
                         </ToggleButton>
                       ))}
                   </ButtonGroup>
                   <Form.Text>
                     <p className="text-danger isErrorMessage">
-                      {errors.category && errors.category.message}
+                      {errors.programCategoryId &&
+                        errors.programCategoryId.message}
                     </p>
                   </Form.Text>
                 </Form.Group>
@@ -197,7 +209,7 @@ const EditArticle = () => {
                 <Form.Group controlId="content" className="mb-3">
                   <Form.Label>Artikel</Form.Label>
                   <div>
-                    <TextEditorUpdate
+                    <TextEditor
                       value={selectContent}
                       onChange={(content) => {
                         setSelectContent(content); // Update the state
@@ -228,16 +240,17 @@ const EditArticle = () => {
           </Row>
         )}
 
-        {isLoading && (
+        {isLoadingProgram && (
           <Container className="d-flex justify-content-center align-items-center">
             <Row>
               <Spinner animation="border" variant="primary" />
             </Row>
           </Container>
         )}
+
         {isError && <div>Error</div>}
       </Container>
     </ContentLayout>
   );
 };
-export default EditArticle;
+export default EditProgram;

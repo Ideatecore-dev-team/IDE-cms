@@ -81,7 +81,8 @@ const Umum = () => {
             <Form.Group className="mb-2">
               <Form.Label>Description</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
+                rows={5}
                 placeholder="Masukan Deskripsi"
                 {...register("description")}
               ></Form.Control>

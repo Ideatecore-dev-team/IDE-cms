@@ -50,7 +50,6 @@ const TextEditor = ({ handleEditorChange }) => {
           "underline",
           "strike",
           "list",
-          "bullet",
           "link",
           "image",
           "color",

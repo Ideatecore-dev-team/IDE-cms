@@ -19,6 +19,7 @@ import {
   MdOutlinePhotoSizeSelectActual,
   MdAccountCircle,
   MdLogout,
+  MdAccountBalance,
 } from "react-icons/md";
 
 const Sidebar = () => {
@@ -111,6 +112,15 @@ const Sidebar = () => {
           Media
         </NavLink>
         <NavLink
+          to="/partner"
+          className={handleActiveNav}
+          aria-label="Our Partner"
+        >
+          <MdAccountBalance className="me-2 fs-4" />
+          Partner
+        </NavLink>
+
+        <NavLink
           to="/ourprogram"
           className={handleActiveNav}
           aria-label="Our Program"
@@ -118,6 +128,7 @@ const Sidebar = () => {
           <MdEmojiPeople className="me-2 fs-4" />
           Our Program
         </NavLink>
+
         <NavLink to="/umum" className={handleActiveNav} aria-label="Umum">
           <MdDashboard className="me-2 fs-4" />
           Umum
