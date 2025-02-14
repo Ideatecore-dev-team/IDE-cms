@@ -83,6 +83,7 @@ const ContactUs = () => {
                     Email
                   </th>
                   <th scope="col">Message</th>
+                  <th scope="col">Manage</th>
                 </tr>
               </thead>
               <tbody>
@@ -102,7 +103,7 @@ const ContactUs = () => {
                     </td>
                     <td className="align-middle small">{contact.message}</td>
 
-                    <td className="align-middle">
+                    <td className="align-middle text-center">
                       <div>
                         <Row className="gap-2">
                           <Col className="p-0">
