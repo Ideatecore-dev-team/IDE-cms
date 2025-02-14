@@ -1,10 +1,43 @@
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Button, Col, Container, Modal, Row, Spinner } from "react-bootstrap";
 import ContentLayout from "../../components/layout/ContentLayout";
-import { useGetAllContactUsQuery } from "../../services/apis/contactUsApi";
+import {
+  useGetAllContactUsQuery,
+  useDeleteContactUsMutation,
+} from "../../services/apis/contactUsApi";
+import { MdOutlineDeleteForever } from "react-icons/md";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const ContactUs = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+
   const { data: dataContactUs, isLoading, isError } = useGetAllContactUsQuery();
-  console.log(dataContactUs);
+  const [deleteContactUs, { isLoading: isLoadingDelete }] =
+    useDeleteContactUsMutation();
+
+  const handleShow = (id) => {
+    setSelectedId(id);
+    setShowModal(true);
+  };
+
+  const handleClose = () => {
+    if (!isLoadingDelete) {
+      setShowModal(false);
+    }
+  };
+  const handleDeleteArticle = async (id) => {
+    try {
+      await deleteContactUs(id).unwrap();
+      toast.success("Delete Contact Us success");
+    } catch (error) {
+      toast.error(error?.data?.message || error?.error);
+    } finally {
+      if (!isLoadingDelete) {
+        setShowModal(false);
+      }
+    }
+  };
 
   return (
     <ContentLayout>
@@ -68,6 +101,22 @@ const ContactUs = () => {
                       {contact.email}
                     </td>
                     <td className="align-middle small">{contact.message}</td>
+
+                    <td className="align-middle">
+                      <div>
+                        <Row className="gap-2">
+                          <Col className="p-0">
+                            <Button
+                              variant="secondary"
+                              className="btn-sm px-2"
+                              onClick={() => handleShow(contact.id)}
+                            >
+                              <MdOutlineDeleteForever className="fs-4" />
+                            </Button>
+                          </Col>
+                        </Row>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -75,6 +124,28 @@ const ContactUs = () => {
           </Col>
         </Row>
       </Container>
+
+      <Modal show={showModal} onHide={handleClose} centered>
+        <Modal.Header closeButton>Confirm Delete Contact Us</Modal.Header>
+        <Modal.Body>Are you sure want to delete this contact us</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            No
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => handleDeleteArticle(selectedId)}
+            disabled={isLoadingDelete}
+            className="w-15"
+          >
+            {isLoadingDelete ? (
+              <Spinner animation="border" variant="outline" size="sm" />
+            ) : (
+              "Yes"
+            )}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </ContentLayout>
   );
 };

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { removeUserInfo } from "../../services/reducers/authSlice";
+import ContentLayout from "../../components/layout/ContentLayout";
 
 const ChangePassword = () => {
   const navigate = useNavigate();
@@ -38,66 +39,68 @@ const ChangePassword = () => {
   };
 
   return (
-    <Container className="vh-100 d-flex align-items-center justify-content-center p-0">
-      <Row className="w-100 bg-white p-2 rounded-3 shadow">
-        <Col>
-          <h1>Change Password</h1>
-        </Col>
-        <Form onSubmit={handleSubmit(changePasswordSubmit)}>
-          <Form.Group>
-            <Form.Label>password lama</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Masukan Password Anda"
-              {...register("oldPassword")}
-            />
-            <Form.Text>
-              <p className="text-danger isErrorMessage">
-                {errors.oldPassword && errors.oldPassword.message}
-              </p>
-            </Form.Text>
-          </Form.Group>
+    <ContentLayout>
+      <Container>
+        <Row>
+          <Col>
+            <h1>Change Password</h1>
+          </Col>
+          <Form onSubmit={handleSubmit(changePasswordSubmit)}>
+            <Form.Group>
+              <Form.Label>password lama</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Masukan Password Anda"
+                {...register("oldPassword")}
+              />
+              <Form.Text>
+                <p className="text-danger isErrorMessage">
+                  {errors.oldPassword && errors.oldPassword.message}
+                </p>
+              </Form.Text>
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>password baru</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Masukan Password Baru Anda"
-              {...register("newPassword")}
-            />
-            <Form.Text>
-              <p className="text-danger isErrorMessage">
-                {errors.newPassword && errors.newPassword.message}
-              </p>
-            </Form.Text>
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>password baru</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Masukan Password Baru Anda"
+                {...register("newPassword")}
+              />
+              <Form.Text>
+                <p className="text-danger isErrorMessage">
+                  {errors.newPassword && errors.newPassword.message}
+                </p>
+              </Form.Text>
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>konfirmasi password baru</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Masukan Konfirmasi Password Anda"
-              {...register("confirmPassword")}
-            />
-            <Form.Text>
-              <p className="text-danger isErrorMessage">
-                {errors.confirmPassword && errors.confirmPassword.message}
-              </p>
-            </Form.Text>
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>konfirmasi password baru</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Masukan Konfirmasi Password Anda"
+                {...register("confirmPassword")}
+              />
+              <Form.Text>
+                <p className="text-danger isErrorMessage">
+                  {errors.confirmPassword && errors.confirmPassword.message}
+                </p>
+              </Form.Text>
+            </Form.Group>
 
-          <div className="text-end mt-3">
-            <Button className="px-3" type="submit" disabled={!isValid}>
-              {isLoading ? (
-                <span className="spinner-border spinner-border-sm"></span>
-              ) : (
-                "Simpan"
-              )}
-            </Button>
-          </div>
-        </Form>
-      </Row>
-    </Container>
+            <div className="text-end mt-3">
+              <Button className="px-3" type="submit" disabled={!isValid}>
+                {isLoading ? (
+                  <span className="spinner-border spinner-border-sm"></span>
+                ) : (
+                  "Simpan"
+                )}
+              </Button>
+            </div>
+          </Form>
+        </Row>
+      </Container>
+    </ContentLayout>
   );
 };
 export default ChangePassword;

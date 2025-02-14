@@ -20,12 +20,13 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { toast } from "react-toastify";
 import { uploadSchema } from "./schema/uploadSchema";
 import MediaPagination from "./MediaPagination";
-import { MdDelete } from "react-icons/md";
+import { MdContentCopy, MdDelete } from "react-icons/md";
 
 const Media = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalImage, setModalImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const [getMediaParams, setGetMediaParams] = useState({
     page: 1,
@@ -217,17 +218,62 @@ const Media = () => {
           <Image src={modalImage} className="w-100 rounded" />
         </Modal.Body>
         <Modal.Footer>
+          {/* Copy Button */}
+          <Button
+            className="w-10 p-2 me-auto"
+            onClick={() => {
+              navigator.clipboard.writeText(modalImage);
+              toast.success("Image URL copied!"); // Show success message (optional)
+            }}
+          >
+            <MdContentCopy className="fs-4" />
+          </Button>
+
           <Button
             className="w-10 p-2"
+            variant="secondary"
             disabled={isLoadingDelete}
-            onClick={() => {
-              handleImageDelete(modalImage);
-            }}
+            onClick={() => setShowDeleteConfirm(true)}
           >
             {isLoadingDelete ? (
               <span className="spinner-border spinner-border-sm"></span>
             ) : (
               <MdDelete className="fs-4" />
+            )}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal
+        show={showDeleteConfirm}
+        onHide={() => setShowDeleteConfirm(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete Media</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this image?</Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => setShowDeleteConfirm(false)}
+          >
+            No
+          </Button>
+          <Button
+            variant="primary"
+            onClick={async () => {
+              await handleImageDelete(modalImage);
+              setShowDeleteConfirm(false);
+            }}
+            disabled={isLoadingDelete}
+            className="w-15"
+          >
+            {isLoadingDelete ? (
+              <Spinner animation="border" variant="outline" size="sm" />
+            ) : (
+              "Yes"
             )}
           </Button>
         </Modal.Footer>
