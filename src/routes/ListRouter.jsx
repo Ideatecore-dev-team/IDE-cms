@@ -23,7 +23,7 @@ import EditArticle from "../pages/article/EditArticle";
 import AddAboutUs from "../pages/aboutUs/AddAboutUs";
 import AddCategoryTeam from "../pages/aboutUs/AddCategoryTeam";
 import EditAboutUs from "../pages/aboutUs/EditAboutUs";
-import AddProgram from "../pages/ourProgram/Addprogram";
+import AddProgram from "../pages/ourProgram/AddProgram";
 import EditProgram from "../pages/ourProgram/EditProgram";
 import ProgramView from "../pages/ourProgram/ProgramView";
 import AddProgramCategory from "../pages/ourProgram/AddProgramCategory";
