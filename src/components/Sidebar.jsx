@@ -20,16 +20,14 @@ import {
   MdAccountCircle,
   MdLogout,
   MdAccountBalance,
+  MdContactPage,
 } from "react-icons/md";
 
 const Sidebar = () => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {
-    // data: user,
-    isLoading,
-  } = useGetUserQuery();
+  const { isLoading } = useGetUserQuery();
   const [logout, { isLoading: isLoadingLogout }] = useLogoutMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
@@ -102,6 +100,16 @@ const Sidebar = () => {
           <MdArticle className="me-2 fs-4" />
           Artikel
         </NavLink>
+
+        <NavLink
+          to="/contactus"
+          className={handleActiveNav}
+          aria-label="Contact Us"
+        >
+          <MdContactPage className="me-2 fs-4" />
+          Contact Us
+        </NavLink>
+
         <NavLink to="/gallery" className={handleActiveNav} aria-label="Gallery">
           <MdImage className="me-2 fs-4" />
           Gallery

@@ -30,6 +30,7 @@ import AddProgramCategory from "../pages/ourProgram/AddProgramCategory";
 import Partner from "../pages/partner";
 import AddPartner from "../pages/partner/AddPartner";
 import EditPartner from "../pages/partner/EditPartner";
+import ContactUs from "../pages/contactUs";
 
 const ListRouter = createBrowserRouter([
   // Public Routes
@@ -77,6 +78,10 @@ const ListRouter = createBrowserRouter([
           {
             path: "/aboutus/editaboutus/:id",
             element: <EditAboutUs />,
+          },
+          {
+            path: "/contactus",
+            element: <ContactUs />,
           },
           { path: "/ourprogram", element: <OurProgram /> },
           { path: "/ourprogram/addprogram", element: <AddProgram /> },
