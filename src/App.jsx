@@ -10,7 +10,7 @@ function App() {
           <Col
             id="sidebar"
             md={"auto"}
-            className="d-flex flex-column bg-white vh-100"
+            className="d-flex flex-column bg-white vhMin-100"
           >
             <Sidebar />
           </Col>

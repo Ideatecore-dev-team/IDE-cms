@@ -20,12 +20,13 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { toast } from "react-toastify";
 import { uploadSchema } from "./schema/uploadSchema";
 import MediaPagination from "./MediaPagination";
-import { MdDelete } from "react-icons/md";
+import { MdContentCopy, MdDelete } from "react-icons/md";
 
 const Media = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalImage, setModalImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const [getMediaParams, setGetMediaParams] = useState({
     page: 1,
@@ -145,10 +146,10 @@ const Media = () => {
                 {/* Image Preview Section */}
                 {imagePreview && (
                   <div className="mt-3 d-flex justify-content-center">
-                    <img
+                    <Image
                       src={imagePreview}
                       alt={imagePreview}
-                      className="img-fluid rounded border border-5 border-secondary"
+                      className="img-fluid rounded border border-secondary"
                       style={{
                         maxHeight: "500px",
                         objectFit: "contain",
@@ -173,14 +174,23 @@ const Media = () => {
           </Col>
         </Row>
 
-        <Row className="g-3 mb-3">
+        <Row className="mb-4">
           {dataMedia?.images &&
             dataMedia?.images.map((item, index) => (
-              <Col md={4} xl={3} key={index} className="d-flex flex-wrap">
+              <Col
+                md={4}
+                xl={3}
+                key={index}
+                className="d-flex flex-wrap  justify-content-center p-1"
+              >
                 <Image
                   src={item}
                   fluid
-                  className="rounded border border-secondary"
+                  className="rounded "
+                  style={{
+                    objectFit: "contain",
+                    maxHeight: "350px",
+                  }}
                   onClick={() => handleImageClick(item)} // Handle image click
                 />
               </Col>
@@ -208,17 +218,62 @@ const Media = () => {
           <Image src={modalImage} className="w-100 rounded" />
         </Modal.Body>
         <Modal.Footer>
+          {/* Copy Button */}
+          <Button
+            className="w-10 p-2 me-auto"
+            onClick={() => {
+              navigator.clipboard.writeText(modalImage);
+              toast.success("Image URL copied!"); // Show success message (optional)
+            }}
+          >
+            <MdContentCopy className="fs-4" />
+          </Button>
+
           <Button
             className="w-10 p-2"
+            variant="secondary"
             disabled={isLoadingDelete}
-            onClick={() => {
-              handleImageDelete(modalImage);
-            }}
+            onClick={() => setShowDeleteConfirm(true)}
           >
             {isLoadingDelete ? (
               <span className="spinner-border spinner-border-sm"></span>
             ) : (
               <MdDelete className="fs-4" />
+            )}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal
+        show={showDeleteConfirm}
+        onHide={() => setShowDeleteConfirm(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete Media</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this image?</Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => setShowDeleteConfirm(false)}
+          >
+            No
+          </Button>
+          <Button
+            variant="primary"
+            onClick={async () => {
+              await handleImageDelete(modalImage);
+              setShowDeleteConfirm(false);
+            }}
+            disabled={isLoadingDelete}
+            className="w-15"
+          >
+            {isLoadingDelete ? (
+              <Spinner animation="border" variant="outline" size="sm" />
+            ) : (
+              "Yes"
             )}
           </Button>
         </Modal.Footer>

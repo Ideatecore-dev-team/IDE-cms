@@ -127,7 +127,7 @@ const EditAboutUs = () => {
                   <img
                     src={imagePreview}
                     alt="Preview"
-                    className="img-fluid rounded border border-5 border-scondary"
+                    className="img-fluid rounded  border-5 border-scondary"
                     style={{
                       maxHeight: "500px",
                       objectFit: "contain",

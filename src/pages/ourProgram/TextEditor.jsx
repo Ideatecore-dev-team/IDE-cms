@@ -8,7 +8,7 @@ import Quill from "quill";
  *  - value (string): The initial or updated content of the editor.
  *  - onChange (function): A callback function that is called whenever the editor content changes.
  */
-const TextEditorUpdate = ({ value, onChange }) => {
+const TextEditor = ({ value, onChange }) => {
   const editorRef = useRef(null); // A reference to the DOM element where Quill will be initialized
   const quillInstance = useRef(null); // A reference to the Quill editor instance
 
@@ -106,4 +106,4 @@ const TextEditorUpdate = ({ value, onChange }) => {
   return <div ref={editorRef} className="isQuillEditor" />;
 };
 
-export default TextEditorUpdate;
+export default TextEditor;
