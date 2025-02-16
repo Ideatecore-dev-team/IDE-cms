@@ -1,8 +1,9 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
-
+import useCounterVisitor from "./services/useCounterVisitor";
 function App() {
+  useCounterVisitor();
   return (
     <>
       <Container fluid id="main">

@@ -9,6 +9,16 @@ const metricVisitor = apiSlice.injectEndpoints({
       }),
       providesTags: ["Metric"],
     }),
+
+    createMetricVisit: builder.mutation({
+      query: (data) => ({
+        url: "metric/visit",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Metric"],
+    }),
   }),
 });
-export const { useGetAllMetricQuery } = metricVisitor;
+export const { useGetAllMetricQuery, useCreateMetricVisitMutation } =
+  metricVisitor;
