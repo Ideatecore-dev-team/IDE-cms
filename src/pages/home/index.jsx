@@ -114,7 +114,7 @@ const Home = () => {
         {dataMetric && (
           <Row className="mb-4">
             <Col md={6} sm={12} className="mb-3">
-              <Card bg="info" text="white">
+              <Card bg="success" text="white">
                 <Card.Body>
                   <Card.Title className="text-center fs-3 fw-bold">
                     Total Unique Visitor
@@ -127,7 +127,7 @@ const Home = () => {
             </Col>
 
             <Col md={6} sm={12}>
-              <Card bg="success" text="white">
+              <Card bg="info" text="white">
                 <Card.Body>
                   <Card.Title className="text-center fs-3 fw-bold">
                     Total Request
