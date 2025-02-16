@@ -1,4 +1,4 @@
-import { Card, Col, Container, ListGroup, Row, Spinner } from "react-bootstrap";
+import { Card, Col, Container, Row, Spinner } from "react-bootstrap";
 import Chart from "react-apexcharts";
 
 import ContentLayout from "../../components/layout/ContentLayout";
