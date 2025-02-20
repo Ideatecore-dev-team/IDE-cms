@@ -12,6 +12,7 @@ const Home = () => {
     isLoading: isLoadingUser,
     isError: isErrorUser,
   } = useGetUserQuery();
+
   const {
     data: dataMetric,
     isLoading: isLoadingMetric,

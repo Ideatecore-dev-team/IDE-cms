@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3001",
-    // baseUrl: "https://server-ideindonesia.ideatecore.com",
+    // baseUrl: "http://localhost:3001",
+    baseUrl: "https://server-ideindonesia.ideatecore.com",
     credentials: "include",
   }),
 

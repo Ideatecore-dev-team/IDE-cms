@@ -3,9 +3,10 @@ import apiSlice from "./apiSlice";
 const teamApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllTeam: builder.query({
-      query: () => ({
+      query: (query) => ({
         url: "/team",
         method: "GET",
+        params: query,
       }),
       providesTags: ["Team"],
     }),

@@ -21,16 +21,30 @@ import {
 } from "../../services/apis/teamApi";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import PaginationData from "../../components/PaginationData";
 
 const AboutUs = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [dataQuery, setDataQuery] = useState({
+    page: 1,
+    size: 10,
+  });
+
+  const handlePaginationChange = (page) => {
+    setDataQuery({
+      ...dataQuery,
+      page,
+    });
+  };
 
   const {
     data: dataTeam,
     isLoading: isLoadingTeams,
     isError: isErrorTeams,
-  } = useGetAllTeamQuery();
+  } = useGetAllTeamQuery(dataQuery);
+
+  console.log(dataTeam);
 
   const [deleteTeam, { isLoading: isLoadingDelete }] = useDeleteTeamMutation();
 
@@ -113,7 +127,10 @@ const AboutUs = () => {
                   {dataTeam?.data?.map((team, index) => (
                     <tr key={team.id}>
                       <th scope="row" className="text-center align-middle">
-                        {index + 1}
+                        {(dataTeam?.pagination?.currentPage - 1) *
+                          dataTeam?.pagination?.perPage +
+                          index +
+                          1}
                       </th>
                       <td className="align-middle">{team.name}</td>
                       <td className="align-middle">{team.CategoryTeam.name}</td>
@@ -165,6 +182,17 @@ const AboutUs = () => {
                   ))}
                 </tbody>
               </table>
+            )}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col className="d-flex justify-content-end p-0">
+            {dataTeam && (
+              <PaginationData
+                dataPagination={dataTeam}
+                handlePaginationChange={handlePaginationChange}
+              />
             )}
           </Col>
         </Row>

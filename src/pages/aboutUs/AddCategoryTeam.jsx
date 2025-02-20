@@ -114,7 +114,7 @@ const AddCategoryTeam = () => {
       <Container>
         <Row className="border-bottom border-secondary mb-3">
           <Col className="px-0">
-            <h1>Tambah Kategori Team</h1>
+            <h1>Tambah Divisi Team</h1>
             <p className="lead">Masukan data pada field yang tertera</p>
           </Col>
         </Row>
@@ -123,10 +123,10 @@ const AddCategoryTeam = () => {
           <Col>
             <Form onSubmit={handleSubmit(handleCreateTeamCategory)}>
               <Form.Group className="mb-3">
-                <Form.Label>Team Kategori</Form.Label>
+                <Form.Label>Team Divisi</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter new category"
+                  placeholder="Enter new divisi"
                   {...register("name")}
                 ></Form.Control>
                 <Form.Text>
@@ -144,7 +144,7 @@ const AddCategoryTeam = () => {
                 {isLoadingCreate ? (
                   <span className="spinner-border spinner-border-sm"></span>
                 ) : (
-                  "Tambahkan Kategori"
+                  "Tambahkan Divisi"
                 )}
               </Button>
             </Form>

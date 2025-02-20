@@ -7,12 +7,27 @@ import {
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import PaginationData from "../../components/PaginationData";
 
 const ContactUs = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  const [dataQuery, setDataQuery] = useState({
+    page: 1,
+    size: 10,
+  });
 
-  const { data: dataContactUs, isLoading, isError } = useGetAllContactUsQuery();
+  const handlePaginationChange = (page) => {
+    setDataQuery({
+      ...dataQuery,
+      page,
+    });
+  };
+  const {
+    data: dataContactUs,
+    isLoading,
+    isError,
+  } = useGetAllContactUsQuery(dataQuery);
   const [deleteContactUs, { isLoading: isLoadingDelete }] =
     useDeleteContactUsMutation();
 
@@ -90,7 +105,10 @@ const ContactUs = () => {
                 {dataContactUs?.data?.map((contact, index) => (
                   <tr key={contact.id}>
                     <th scope="row" className="text-center align-middle">
-                      {index + 1}
+                      {(dataContactUs?.pagination?.currentPage - 1) *
+                        dataContactUs?.pagination?.perPage +
+                        index +
+                        1}
                     </th>
                     <td className="align-middle text-center">
                       {contact.firstName}
@@ -122,6 +140,17 @@ const ContactUs = () => {
                 ))}
               </tbody>
             </table>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col className="d-flex justify-content-end p-0">
+            {dataContactUs && (
+              <PaginationData
+                dataPagination={dataContactUs}
+                handlePaginationChange={handlePaginationChange}
+              />
+            )}
           </Col>
         </Row>
       </Container>
