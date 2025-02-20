@@ -43,9 +43,9 @@ const Sidebar = () => {
   const handleLogout = async () => {
     try {
       dispatch(removeUserInfo());
-      await logout().unwrap();
-      dispatch(apiSlice.util.resetApiState());
       toast.success("Logout success");
+      dispatch(apiSlice.util.resetApiState());
+      await logout().unwrap();
       navigate("/login");
     } catch (error) {
       toast.error(error?.data?.message || error?.error);
