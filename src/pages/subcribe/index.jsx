@@ -1,20 +1,22 @@
 import { Button, Col, Container, Modal, Row, Spinner } from "react-bootstrap";
 import ContentLayout from "../../components/layout/ContentLayout";
+import { format } from "date-fns";
+
 import {
-  useGetAllContactUsQuery,
-  useDeleteContactUsMutation,
-} from "../../services/apis/contactUsApi";
+  useGetAllSubscribeQuery,
+  useDeleteSubscribeMutation,
+} from "../../services/apis/subscribeApi";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import PaginationData from "../../components/PaginationData";
 
-const ContactUs = () => {
+const Subscibe = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [dataQuery, setDataQuery] = useState({
     page: 1,
-    size: 5,
+    size: 10,
   });
 
   const handlePaginationChange = (page) => {
@@ -23,13 +25,14 @@ const ContactUs = () => {
       page,
     });
   };
+
   const {
-    data: dataContactUs,
+    data: dataSubscribe,
     isLoading,
     isError,
-  } = useGetAllContactUsQuery(dataQuery);
-  const [deleteContactUs, { isLoading: isLoadingDelete }] =
-    useDeleteContactUsMutation();
+  } = useGetAllSubscribeQuery(dataQuery);
+  const [deleteSubscribe, { isLoading: isLoadingDelete }] =
+    useDeleteSubscribeMutation();
 
   const handleShow = (id) => {
     setSelectedId(id);
@@ -43,8 +46,8 @@ const ContactUs = () => {
   };
   const handleDeleteArticle = async (id) => {
     try {
-      await deleteContactUs(id).unwrap();
-      toast.success("Delete Contact Us success");
+      await deleteSubscribe(id).unwrap();
+      toast.success("Delete Subscribe success");
     } catch (error) {
       toast.error(error?.data?.message || error?.error);
     } finally {
@@ -59,17 +62,17 @@ const ContactUs = () => {
       <Container>
         <Row className="border-bottom border-secondary mb-3">
           <Col className="px-0">
-            <h1>Contact Us</h1>
+            <h1>Subscribe</h1>
             <p>
-              Kelola pesan dari
-              <span className="fw-bold"> “Contact Us”</span> disini.
+              Kelola
+              <span className="fw-bold"> “Subscribe”</span> dari disini.
             </p>
           </Col>
         </Row>
 
         <Row className="mb-3 isContentBgColor rounded-3 ">
           <Col className="align-self-center">
-            <h2 className="mt-2">List of Message</h2>
+            <h2 className="mt-2">List of Subscribe</h2>
           </Col>
         </Row>
 
@@ -88,38 +91,35 @@ const ContactUs = () => {
                   <th scope="col" className="text-center w-5">
                     No.
                   </th>
-                  <th scope="col" className="text-center w-15">
-                    First Name
+                  <th scope="col" className="text-center w-20">
+                    Date
                   </th>
-                  <th scope="col" className="text-center w-15">
-                    Last Name
-                  </th>
-                  <th scope="col" className="text-center w-15">
+
+                  <th scope="col" className="text-center">
                     Email
                   </th>
-                  <th scope="col">Message</th>
-                  <th scope="col">Manage</th>
+
+                  <th scope="col" className="text-center w-15">
+                    Manage
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {dataContactUs?.data?.map((contact, index) => (
-                  <tr key={contact.id}>
+                {dataSubscribe?.data?.map((subscribe, index) => (
+                  <tr key={subscribe.id}>
                     <th scope="row" className="text-center align-middle">
-                      {(dataContactUs?.pagination?.currentPage - 1) *
-                        dataContactUs?.pagination?.perPage +
+                      {(dataSubscribe?.pagination?.currentPage - 1) *
+                        dataSubscribe?.pagination?.perPage +
                         index +
                         1}
                     </th>
                     <td className="align-middle text-center">
-                      {contact.firstName}
+                      {format(new Date(subscribe.createdAt), "dd MMM yyyy")}
                     </td>
+
                     <td className="align-middle text-center">
-                      {contact.lastName}
+                      {subscribe.email}
                     </td>
-                    <td className="align-middle text-center">
-                      {contact.email}
-                    </td>
-                    <td className="align-middle small">{contact.message}</td>
 
                     <td className="align-middle text-center">
                       <div>
@@ -128,7 +128,7 @@ const ContactUs = () => {
                             <Button
                               variant="secondary"
                               className="btn-sm px-2"
-                              onClick={() => handleShow(contact.id)}
+                              onClick={() => handleShow(subscribe.id)}
                             >
                               <MdOutlineDeleteForever className="fs-4" />
                             </Button>
@@ -145,9 +145,9 @@ const ContactUs = () => {
 
         <Row>
           <Col className="d-flex justify-content-end p-0">
-            {dataContactUs && (
+            {dataSubscribe && (
               <PaginationData
-                dataPagination={dataContactUs}
+                dataPagination={dataSubscribe}
                 handlePaginationChange={handlePaginationChange}
               />
             )}
@@ -156,8 +156,8 @@ const ContactUs = () => {
       </Container>
 
       <Modal show={showModal} onHide={handleClose} centered>
-        <Modal.Header closeButton>Confirm Delete Contact Us</Modal.Header>
-        <Modal.Body>Are you sure want to delete this contact us</Modal.Body>
+        <Modal.Header closeButton>Confirm Delete Subscribe</Modal.Header>
+        <Modal.Body>Are you sure want to delete this subscribe</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             No
@@ -179,4 +179,4 @@ const ContactUs = () => {
     </ContentLayout>
   );
 };
-export default ContactUs;
+export default Subscibe;

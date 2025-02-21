@@ -1,8 +1,9 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
-
+// import useCounterVisitor from "./services/useCounterVisitor";
 function App() {
+  // useCounterVisitor();
   return (
     <>
       <Container fluid id="main">
@@ -10,7 +11,7 @@ function App() {
           <Col
             id="sidebar"
             md={"auto"}
-            className="d-flex flex-column bg-white vhMin-100"
+            className="d-flex flex-column bg-white min-vh-100"
           >
             <Sidebar />
           </Col>

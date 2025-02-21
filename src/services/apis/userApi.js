@@ -12,9 +12,10 @@ const userApi = apiSlice.injectEndpoints({
     }),
 
     getAllUser: builder.query({
-      query: () => ({
+      query: (query) => ({
         url: "/user",
         method: "GET",
+        params: query,
       }),
       providesTags: ["User"],
     }),

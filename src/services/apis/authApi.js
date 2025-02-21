@@ -20,6 +20,8 @@ const authApi = apiSlice.injectEndpoints({
         url: "/getuser",
         method: "GET",
       }),
+      providesTags: ["User"],
+      // keepUnusedDataFor: 3600,
     }),
     changePassword: builder.mutation({
       query: (data) => ({

@@ -21,16 +21,28 @@ import {
 } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import PaginationData from "../../components/PaginationData";
 
 const Partner = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedPartnerId, setSelectedPartnerId] = useState(null);
+  const [dataQuery, setDataQuery] = useState({
+    page: 1,
+    size: 10,
+  });
+
+  const handlePaginationChange = (page) => {
+    setDataQuery({
+      ...dataQuery,
+      page,
+    });
+  };
 
   const {
     data: dataPartner,
     isLoading: isLoadingPartner,
     isError: isErrorPartner,
-  } = useGetAllPartnerQuery();
+  } = useGetAllPartnerQuery(dataQuery);
 
   const [deletePartner, { isLoading: isLoadingDelete }] =
     useDeletePartnerMutation();
@@ -113,7 +125,10 @@ const Partner = () => {
                   {dataPartner?.data?.map((partner, index) => (
                     <tr key={partner.id}>
                       <th scope="row" className="text-center align-middle">
-                        {index + 1}
+                        {(dataPartner?.pagination?.currentPage - 1) *
+                          dataPartner?.pagination?.perPage +
+                          index +
+                          1}
                       </th>
                       <td className="align-middle">
                         <Link
@@ -159,6 +174,17 @@ const Partner = () => {
                   ))}
                 </tbody>
               </table>
+            )}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col className="d-flex justify-content-end p-0">
+            {dataPartner && (
+              <PaginationData
+                dataPagination={dataPartner}
+                handlePaginationChange={handlePaginationChange}
+              />
             )}
           </Col>
         </Row>

@@ -20,6 +20,7 @@ import { toast } from "react-toastify";
 const Gallery = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedGalleryId, setSelectedGalleryId] = useState(null);
+  const [selectedPosition, setSelectedPosition] = useState(null);
 
   const {
     register,
@@ -42,12 +43,21 @@ const Gallery = () => {
     bottomRight: "cm6u63rfp0000ta7cog34mfxz",
   };
 
+  const imageSizeRecomendation = {
+    topLeft: "170 X 250",
+    bottomLeft: "170 X 100",
+    center: "170 X 358",
+    topRight: "170 X 100",
+    bottomRight: "170 X 250",
+  };
+
   const getImage = (position) => {
     return galleries?.data?.find((item) => item.id === imagePosition[position]);
   };
 
-  const handleShow = (id, image) => {
+  const handleShow = (position, id, image) => {
     setSelectedGalleryId(id);
+    setSelectedPosition(position);
     setValue("image", image);
     setShowModal(true);
   };
@@ -73,8 +83,6 @@ const Gallery = () => {
       }
     }
   };
-
-  // console.log(galleries?.data);
 
   return (
     <ContentLayout>
@@ -104,6 +112,7 @@ const Gallery = () => {
                   fluid
                   onClick={() =>
                     handleShow(
+                      "topLeft",
                       getImage("topLeft")?.id,
                       getImage("topLeft")?.image,
                     )
@@ -123,6 +132,7 @@ const Gallery = () => {
                   fluid
                   onClick={() =>
                     handleShow(
+                      "bottomLeft",
                       getImage("bottomLeft")?.id,
                       getImage("bottomLeft")?.image,
                     )
@@ -144,6 +154,7 @@ const Gallery = () => {
                   fluid
                   onClick={() =>
                     handleShow(
+                      "center",
                       getImage("center")?.id,
                       getImage("center")?.image,
                     )
@@ -165,6 +176,7 @@ const Gallery = () => {
                   fluid
                   onClick={() =>
                     handleShow(
+                      "topRight",
                       getImage("topRight")?.id,
                       getImage("topRight")?.image,
                     )
@@ -184,6 +196,7 @@ const Gallery = () => {
                   fluid
                   onClick={() =>
                     handleShow(
+                      "bottomRight",
                       getImage("bottomRight")?.id,
                       getImage("bottomRight")?.image,
                     )
@@ -197,7 +210,11 @@ const Gallery = () => {
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>Update Gallery</Modal.Header>
         <Modal.Body>
-          Are you sure want to update gallery
+          Are you sure you want to update gallery?
+          <p>
+            Our Recomendation size for this image is{" "}
+            {selectedPosition && imageSizeRecomendation[selectedPosition]}
+          </p>
           <Form onSubmit={handleSubmit(handleUpdateGallery)}>
             <Form.Group className="my-3">
               <Form.Control
@@ -232,4 +249,5 @@ const Gallery = () => {
     </ContentLayout>
   );
 };
+
 export default Gallery;

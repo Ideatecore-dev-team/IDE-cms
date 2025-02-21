@@ -4,8 +4,21 @@ const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     // baseUrl: "http://localhost:3001",
-    baseUrl: "https://server-ideindonesia.ideatecore.com/",
-    credentials: "include",
+    baseUrl: "https://server-ideindonesia.ideatecore.com",
+    // credentials: "include",
+    prepareHeaders: (headers) => {
+      const userInfo = localStorage.getItem("userInfo");
+
+      if (userInfo) {
+        const { token } = JSON.parse(userInfo);
+        // console.log(token);
+        if (token) {
+          headers.set("authorization", `Bearer ${token}`);
+        }
+      }
+
+      return headers;
+    },
   }),
 
   // eslint-disable-next-line no-unused-vars

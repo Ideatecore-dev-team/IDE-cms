@@ -12,13 +12,24 @@ import {
 } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import PaginationData from "../../components/PaginationData";
 
 const Akun = () => {
   // Open and close modal
   const [showModal, setShowModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [dataQuery, setDataQuery] = useState({
+    page: 1,
+    size: 10,
+  });
+  const handlePaginationChange = (page) => {
+    setDataQuery({
+      ...dataQuery,
+      page,
+    });
+  };
 
-  const { data: allUser, isLoading, isError } = useGetAllUserQuery();
+  const { data: allUser, isLoading, isError } = useGetAllUserQuery(dataQuery);
 
   const [deleteUser, { isLoading: isLoadingDelete }] =
     useDeleteUserByIdMutation();
@@ -103,7 +114,10 @@ const Akun = () => {
                     user.role === "ADMIN" && (
                       <tr key={user.id}>
                         <th scope="row" className="text-center align-middle">
-                          {index + 1}
+                          {(allUser?.pagination?.currentPage - 1) *
+                            allUser?.pagination?.perPage +
+                            index +
+                            1}
                         </th>
                         <td className="align-middle">{user.name}</td>
                         <td className="align-middle">{user.email}</td>
@@ -139,6 +153,17 @@ const Akun = () => {
                 )}
               </tbody>
             </table>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col className="d-flex justify-content-end p-0">
+            {allUser && (
+              <PaginationData
+                dataPagination={allUser}
+                handlePaginationChange={handlePaginationChange}
+              />
+            )}
           </Col>
         </Row>
       </Container>

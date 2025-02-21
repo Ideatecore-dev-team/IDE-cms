@@ -31,6 +31,7 @@ import Partner from "../pages/partner";
 import AddPartner from "../pages/partner/AddPartner";
 import EditPartner from "../pages/partner/EditPartner";
 import ContactUs from "../pages/contactUs";
+import Subscribe from "../pages/subcribe";
 
 const ListRouter = createBrowserRouter([
   // Public Routes
@@ -95,6 +96,10 @@ const ListRouter = createBrowserRouter([
           { path: "/partner", element: <Partner /> },
           { path: "/partner/addpartner", element: <AddPartner /> },
           { path: "/partner/editpartner/:id", element: <EditPartner /> },
+          {
+            path: "/subscribe",
+            element: <Subscribe />,
+          },
           {
             path: "/umum",
             element: <Umum />,

@@ -21,6 +21,7 @@ import {
   MdLogout,
   MdAccountBalance,
   MdContactPage,
+  MdSubscriptions,
 } from "react-icons/md";
 
 const Sidebar = () => {
@@ -42,12 +43,18 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     try {
-      dispatch(removeUserInfo());
       await logout().unwrap();
       dispatch(apiSlice.util.resetApiState());
+      dispatch(removeUserInfo());
       toast.success("Logout success");
       navigate("/login");
     } catch (error) {
+      if (error.status === 401) {
+        dispatch(removeUserInfo());
+        toast.success("Logout success");
+        navigate("/login");
+        return;
+      }
       toast.error(error?.data?.message || error?.error);
     } finally {
       if (!isLoadingLogout) {
@@ -135,6 +142,15 @@ const Sidebar = () => {
         >
           <MdEmojiPeople className="me-2 fs-4" />
           Our Program
+        </NavLink>
+
+        <NavLink
+          to="/subscribe"
+          className={handleActiveNav}
+          aria-label="Subscribe"
+        >
+          <MdSubscriptions className="me-2 fs-4" />
+          Subscribe
         </NavLink>
 
         <NavLink to="/umum" className={handleActiveNav} aria-label="Umum">

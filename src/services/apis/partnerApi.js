@@ -3,9 +3,10 @@ import apiSlice from "./apiSlice";
 const partnerApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllPartner: builder.query({
-      query: () => ({
+      query: (query) => ({
         url: "/partner",
         method: "GET",
+        params: query,
       }),
       providesTags: ["Partner"],
     }),
