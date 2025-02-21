@@ -219,15 +219,30 @@ const Media = () => {
         </Modal.Body>
         <Modal.Footer>
           {/* Copy Button */}
-          <Button
+          {/* <Button
             className="w-10 p-2 me-auto"
             onClick={() => {
               navigator.clipboard.writeText(modalImage);
               toast.success("Image URL copied!"); // Show success message (optional)
             }}
           >
+
             <MdContentCopy className="fs-4" />
-          </Button>
+          </Button> */}
+
+          {/* Copy Button */}
+          <Button
+          className="w-10 p-2 me-auto"
+          onClick={() => {
+            // Replace spaces with %20 for the URL
+            const formattedUrl = modalImage.replace(/ /g, '%20');
+            navigator.clipboard.writeText(formattedUrl);
+            toast.success("Image URL copied!"); // Show success message (optional)
+          }}
+        >
+          <MdContentCopy className="fs-4" />
+        </Button>
+
 
           <Button
             className="w-10 p-2"

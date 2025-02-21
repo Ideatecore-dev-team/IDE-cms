@@ -63,7 +63,7 @@ const Umum = () => {
         <Row>
           <Form onSubmit={handleSubmit(handleUpdateCompanyInfo)}>
             {/* name */}
-            <Form.Group className="mb-2">
+            {/* <Form.Group className="mb-2">
               <Form.Label>Nama</Form.Label>
               <Form.Control
                 type="text"
@@ -75,10 +75,10 @@ const Umum = () => {
                   {errors.name && errors.name.message}
                 </p>
               </Form.Text>
-            </Form.Group>
+            </Form.Group> */}
 
             {/* description */}
-            <Form.Group className="mb-2">
+            {/* <Form.Group className="mb-2">
               <Form.Label>Description</Form.Label>
               <Form.Control
                 as="textarea"
@@ -91,10 +91,10 @@ const Umum = () => {
                   {errors.description && errors.description.message}
                 </p>
               </Form.Text>
-            </Form.Group>
+            </Form.Group> */}
 
             {/* title */}
-            <Form.Group className="mb-2">
+            {/* <Form.Group className="mb-2">
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
@@ -106,10 +106,10 @@ const Umum = () => {
                   {errors.title && errors.title.message}
                 </p>
               </Form.Text>
-            </Form.Group>
+            </Form.Group> */}
 
             {/* image */}
-            <Form.Group className="mb-2">
+            {/* <Form.Group className="mb-2">
               <Form.Label>Image</Form.Label>
               <Form.Control
                 type="text"
@@ -121,7 +121,7 @@ const Umum = () => {
                   {errors.image && errors.image.message}
                 </p>
               </Form.Text>
-            </Form.Group>
+            </Form.Group> */}
 
             {/* Phone */}
             <Form.Group className="mb-2">
@@ -199,7 +199,7 @@ const Umum = () => {
             </Form.Group>
 
             {/* Twitter */}
-            <Form.Group className="mb-2">
+            {/* <Form.Group className="mb-2">
               <Form.Label>Twitter</Form.Label>
               <Form.Control
                 type="text"
@@ -211,7 +211,7 @@ const Umum = () => {
                   {errors.Twitter && errors.Twitter.message}
                 </p>
               </Form.Text>
-            </Form.Group>
+            </Form.Group> */}
 
             {/* Linkedin */}
             <Form.Group className="mb-2">
@@ -244,7 +244,7 @@ const Umum = () => {
             </Form.Group>
 
             {/* Tiktok */}
-            <Form.Group className="mb-2">
+            {/* <Form.Group className="mb-2">
               <Form.Label>Tiktok</Form.Label>
               <Form.Control
                 type="text"
@@ -256,7 +256,7 @@ const Umum = () => {
                   {errors.Tiktok && errors.Tiktok.message}
                 </p>
               </Form.Text>
-            </Form.Group>
+            </Form.Group> */}
 
             <Button
               type="submit"
