@@ -44,7 +44,7 @@ const AboutUs = () => {
     isError: isErrorTeams,
   } = useGetAllTeamQuery(dataQuery);
 
-  console.log(dataTeam);
+  // console.log(dataTeam);
 
   const [deleteTeam, { isLoading: isLoadingDelete }] = useDeleteTeamMutation();
 
