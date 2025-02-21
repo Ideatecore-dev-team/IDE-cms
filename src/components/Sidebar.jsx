@@ -45,10 +45,16 @@ const Sidebar = () => {
     try {
       await logout().unwrap();
       dispatch(apiSlice.util.resetApiState());
-      toast.success("Logout success");
       dispatch(removeUserInfo());
+      toast.success("Logout success");
       navigate("/login");
     } catch (error) {
+      if (error.status === 401) {
+        dispatch(removeUserInfo());
+        toast.success("Logout success");
+        navigate("/login");
+        return;
+      }
       toast.error(error?.data?.message || error?.error);
     } finally {
       if (!isLoadingLogout) {
