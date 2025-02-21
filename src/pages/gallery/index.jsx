@@ -44,11 +44,11 @@ const Gallery = () => {
   };
 
   const imageSizeRecomendation = {
-    topLeft: "170 X 250",
-    bottomLeft: "170 X 100",
-    center: "170 X 358",
-    topRight: "170 X 100",
-    bottomRight: "170 X 250",
+    topLeft: "170 X 250 px",
+    bottomLeft: "170 X 100 px",
+    center: "170 X 358 px",
+    topRight: "170 X 100 px",
+    bottomRight: "170 X 250 px",
   };
 
   const getImage = (position) => {
