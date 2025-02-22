@@ -19,8 +19,8 @@ import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { toast } from "react-toastify";
 import { uploadSchema } from "./schema/uploadSchema";
-import MediaPagination from "./MediaPagination";
 import { MdContentCopy, MdDelete } from "react-icons/md";
+import PaginationData from "../../components/PaginationData";
 
 const Media = () => {
   const [showModal, setShowModal] = useState(false);
@@ -52,6 +52,8 @@ const Media = () => {
     isLoading,
     isError,
   } = useGetMediaQuery(getMediaParams);
+
+  const dataPagination = { pagination: dataMedia };
 
   const [uploadMedia, { isLoading: isLoadingUpload }] =
     useUploadMediaMutation();
@@ -197,11 +199,22 @@ const Media = () => {
             ))}
         </Row>
 
-        <Row>
+        {/* <Row>
           <Col className="d-flex justify-content-end p-0">
             {dataMedia && (
               <MediaPagination
                 dataMedia={dataMedia}
+                handlePaginationChange={handlePaginationChange}
+              />
+            )}
+          </Col>
+        </Row> */}
+
+        <Row>
+          <Col className="d-flex justify-content-end p-0">
+            {dataMedia && (
+              <PaginationData
+                dataPagination={dataPagination}
                 handlePaginationChange={handlePaginationChange}
               />
             )}

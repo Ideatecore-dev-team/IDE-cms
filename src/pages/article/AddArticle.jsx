@@ -96,7 +96,7 @@ const AddArticle = () => {
           <Col>
             <Form onSubmit={handleSubmit(handleCreateArticle)}>
               <Form.Group controlId="image" className="mb-3">
-                <Form.Label>Thumbnail Artikel</Form.Label>
+                <Form.Label>Gambar</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Masukan url gambar"

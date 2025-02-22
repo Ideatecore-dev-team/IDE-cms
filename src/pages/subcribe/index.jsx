@@ -16,7 +16,7 @@ const Subscibe = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [dataQuery, setDataQuery] = useState({
     page: 1,
-    size: 10,
+    size: 15,
   });
 
   const handlePaginationChange = (page) => {

@@ -10,8 +10,8 @@ import { useState } from "react";
 
 import ArticleSearch from "./ArticleSearch";
 import ArticleTable from "./ArticleTable";
-import ArticlesPagination from "./ArticlesPagination";
 import { toast } from "react-toastify";
+import PaginationData from "../../components/PaginationData";
 
 const Article = () => {
   const [showModal, setShowModal] = useState(false);
@@ -20,7 +20,7 @@ const Article = () => {
   const [articleQuery, setArticleQuery] = useState({
     search: "",
     page: 1,
-    size: 5,
+    size: 10,
   });
 
   const {
@@ -118,11 +118,22 @@ const Article = () => {
           </Col>
         </Row>
 
-        <Row>
+        {/* <Row>
           <Col className="d-flex justify-content-end p-0">
             {articles && (
               <ArticlesPagination
                 articles={articles}
+                handlePaginationChange={handlePaginationChange}
+              />
+            )}
+          </Col>
+        </Row> */}
+
+        <Row>
+          <Col className="d-flex justify-content-end p-0">
+            {articles && (
+              <PaginationData
+                dataPagination={articles}
                 handlePaginationChange={handlePaginationChange}
               />
             )}
