@@ -8,10 +8,15 @@ const createPartnerSchema = Joi.object({
     "string.uri": "Image url is not valid",
     "string.empty": "Image is required",
   }),
-  link: Joi.string().required().uri().messages({
-    "string.uri": "Link url is not valid",
-    "string.empty": "Link is required",
-  }),
+  link: Joi.string()
+    .optional()
+    // .uri()
+    .messages({
+      "string.uri": "Link url is not valid",
+      "string.empty": "Link is required",
+    })
+    .default("-")
+    .empty("-"),
 });
 
 export { createPartnerSchema };

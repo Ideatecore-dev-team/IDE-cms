@@ -84,14 +84,14 @@ const ListRouter = createBrowserRouter([
             path: "/contactus",
             element: <ContactUs />,
           },
-          { path: "/ourprogram", element: <OurProgram /> },
-          { path: "/ourprogram/addprogram", element: <AddProgram /> },
-          { path: "/ourprogram/editprogram/:id", element: <EditProgram /> },
-          { path: "/ourprogram/view/:id", element: <ProgramView /> },
-          {
-            path: "/ourprogram/addprogramcategory",
-            element: <AddProgramCategory />,
-          },
+          // { path: "/ourprogram", element: <OurProgram /> },
+          // { path: "/ourprogram/addprogram", element: <AddProgram /> },
+          // { path: "/ourprogram/editprogram/:id", element: <EditProgram /> },
+          // { path: "/ourprogram/view/:id", element: <ProgramView /> },
+          // {
+          //   path: "/ourprogram/addprogramcategory",
+          //   element: <AddProgramCategory />,
+          // },
 
           { path: "/partner", element: <Partner /> },
           { path: "/partner/addpartner", element: <AddPartner /> },

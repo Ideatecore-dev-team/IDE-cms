@@ -106,7 +106,7 @@ const EditArticle = () => {
             <Col>
               <Form onSubmit={handleSubmit(handleEditArticle)}>
                 <Form.Group controlId="image" className="mb-3">
-                  <Form.Label>Thumbnail Artikel</Form.Label>
+                  <Form.Label>Gambar</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Masukan url gambar"
@@ -179,7 +179,7 @@ const EditArticle = () => {
                   </Form.Text>
                 </Form.Group>
 
-                <Form.Group controlId="description" className="mb-3">
+                {/* <Form.Group controlId="description" className="mb-3">
                   <Form.Label>Deskripsi</Form.Label>
                   <Form.Control
                     as="textarea"
@@ -192,7 +192,7 @@ const EditArticle = () => {
                       {errors.description && errors.description.message}
                     </p>
                   </Form.Text>
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group controlId="content" className="mb-3">
                   <Form.Label>Artikel</Form.Label>

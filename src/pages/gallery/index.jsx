@@ -44,11 +44,11 @@ const Gallery = () => {
   };
 
   const imageSizeRecomendation = {
-    topLeft: "170 X 250",
-    bottomLeft: "170 X 100",
-    center: "170 X 358",
-    topRight: "170 X 100",
-    bottomRight: "170 X 250",
+    topLeft: "170 X 250 px",
+    bottomLeft: "170 X 100 px",
+    center: "170 X 358 px",
+    topRight: "170 X 100 px",
+    bottomRight: "170 X 250 px",
   };
 
   const getImage = (position) => {
@@ -98,12 +98,15 @@ const Gallery = () => {
         </Row>
 
         {/* Gallery Layout */}
-        <Row className="mb-3 justify-content-center gap-2">
-          <Col md={"auto"} className="p-0">
-            <div
+        <Row className="mb-3 justify-content-center gap-4">
+          <Col
+            md="3"
+            className="p-0 d-flex flex-column justify-content-between"
+          >
+            <Col
               id="topLeft"
-              className="isContentBgColor mb-2 d-flex align-items-center justify-content-center"
-              style={{ width: "170px", height: "250px" }}
+              className="mb-2 d-flex align-items-start justify-content-center"
+              // style={{ width: "170px", height: "250px" }}
             >
               {isLoading && <Spinner variant="primary" />}
               {getImage("topLeft") && (
@@ -119,11 +122,11 @@ const Gallery = () => {
                   }
                 />
               )}
-            </div>
-            <div
+            </Col>
+            <Col
               id="bottomLeft"
-              className="isContentBgColor d-flex align-items-center justify-content-center"
-              style={{ width: "170px", height: "100px" }}
+              className="d-flex align-items-end justify-content-center"
+              // style={{ width: "170px", height: "100px" }}
             >
               {isLoading && <Spinner variant="primary" />}
               {getImage("bottomLeft") && (
@@ -139,13 +142,14 @@ const Gallery = () => {
                   }
                 />
               )}
-            </div>
+            </Col>
           </Col>
-          <Col md={"auto"} className="p-0">
+
+          <Col md="3" className="p-0">
             <div
               id="center"
-              className="isContentBgColor d-flex align-items-center justify-content-center"
-              style={{ width: "170px", height: "358px" }}
+              className="d-flex align-items-center justify-content-center"
+              // style={{ width: "170px", height: "358px" }}
             >
               {isLoading && <Spinner variant="primary" />}
               {getImage("center") && (
@@ -163,11 +167,15 @@ const Gallery = () => {
               )}
             </div>
           </Col>
-          <Col md={"auto"} className="p-0">
-            <div
+
+          <Col
+            md="3"
+            className="p-0 d-flex flex-column justify-content-between "
+          >
+            <Col
               id="topRight"
-              className="isContentBgColor mb-2 d-flex align-items-center justify-content-center"
-              style={{ width: "170px", height: "100px" }}
+              className="mb-2 d-flex align-items-start justify-content-center"
+              // style={{ width: "170px", height: "100px" }}
             >
               {isLoading && <Spinner variant="primary" />}
               {getImage("topRight") && (
@@ -183,11 +191,11 @@ const Gallery = () => {
                   }
                 />
               )}
-            </div>
-            <div
+            </Col>
+            <Col
               id="bottomRight"
-              className="isContentBgColor d-flex align-items-center justify-content-center"
-              style={{ width: "170px", height: "250px" }}
+              className="d-flex align-items-end justify-content-center"
+              // style={{ width: "170px", height: "250px" }}
             >
               {isLoading && <Spinner variant="primary" />}
               {getImage("bottomRight") && (
@@ -203,7 +211,7 @@ const Gallery = () => {
                   }
                 />
               )}
-            </div>
+            </Col>
           </Col>
         </Row>
       </Container>

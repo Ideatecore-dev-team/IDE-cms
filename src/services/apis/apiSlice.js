@@ -4,7 +4,6 @@ const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     // baseUrl: "http://localhost:3001",
-    // baseUrl: "https://server-ideindonesia.ideatecore.com",
     baseUrl: "https://api.theideindonesia.id",
     // credentials: "include",
     prepareHeaders: (headers) => {

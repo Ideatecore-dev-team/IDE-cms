@@ -42,6 +42,9 @@ const AddArticle = () => {
     formState: { errors },
   } = useForm({
     mode: "onChange",
+    defaultValues: {
+      description: "undefined", // Set default value for description
+    },
     resolver: joiResolver(createArticleSchema),
   });
 
@@ -96,7 +99,7 @@ const AddArticle = () => {
           <Col>
             <Form onSubmit={handleSubmit(handleCreateArticle)}>
               <Form.Group controlId="image" className="mb-3">
-                <Form.Label>Thumbnail Artikel</Form.Label>
+                <Form.Label>Gambar</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Masukan url gambar"
@@ -167,7 +170,8 @@ const AddArticle = () => {
                 </Form.Text>
               </Form.Group>
 
-              <Form.Group controlId="description" className="mb-3">
+{/* DESCRIPTION */}
+              {/* <Form.Group controlId="description" className="mb-3">
                 <Form.Label>Deskripsi</Form.Label>
                 <Form.Control
                   as="textarea"
@@ -180,7 +184,7 @@ const AddArticle = () => {
                     {errors.description && errors.description.message}
                   </p>
                 </Form.Text>
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group controlId="content" className="mb-3">
                 <Form.Label>Artikel</Form.Label>

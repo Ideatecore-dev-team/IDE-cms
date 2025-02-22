@@ -19,8 +19,8 @@ import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { toast } from "react-toastify";
 import { uploadSchema } from "./schema/uploadSchema";
-import MediaPagination from "./MediaPagination";
 import { MdContentCopy, MdDelete } from "react-icons/md";
+import PaginationData from "../../components/PaginationData";
 
 const Media = () => {
   const [showModal, setShowModal] = useState(false);
@@ -52,6 +52,8 @@ const Media = () => {
     isLoading,
     isError,
   } = useGetMediaQuery(getMediaParams);
+
+  const dataPagination = { pagination: dataMedia };
 
   const [uploadMedia, { isLoading: isLoadingUpload }] =
     useUploadMediaMutation();
@@ -197,11 +199,22 @@ const Media = () => {
             ))}
         </Row>
 
-        <Row>
+        {/* <Row>
           <Col className="d-flex justify-content-end p-0">
             {dataMedia && (
               <MediaPagination
                 dataMedia={dataMedia}
+                handlePaginationChange={handlePaginationChange}
+              />
+            )}
+          </Col>
+        </Row> */}
+
+        <Row>
+          <Col className="d-flex justify-content-end p-0">
+            {dataMedia && (
+              <PaginationData
+                dataPagination={dataPagination}
                 handlePaginationChange={handlePaginationChange}
               />
             )}
@@ -219,15 +232,30 @@ const Media = () => {
         </Modal.Body>
         <Modal.Footer>
           {/* Copy Button */}
-          <Button
+          {/* <Button
             className="w-10 p-2 me-auto"
             onClick={() => {
               navigator.clipboard.writeText(modalImage);
               toast.success("Image URL copied!"); // Show success message (optional)
             }}
           >
+
             <MdContentCopy className="fs-4" />
-          </Button>
+          </Button> */}
+
+          {/* Copy Button */}
+          <Button
+          className="w-10 p-2 me-auto"
+          onClick={() => {
+            // Replace spaces with %20 for the URL
+            const formattedUrl = modalImage.replace(/ /g, '%20');
+            navigator.clipboard.writeText(formattedUrl);
+            toast.success("Image URL copied!"); // Show success message (optional)
+          }}
+        >
+          <MdContentCopy className="fs-4" />
+        </Button>
+
 
           <Button
             className="w-10 p-2"

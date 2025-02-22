@@ -11,7 +11,7 @@ const createArticleSchema = Joi.object({
   categoryId: Joi.string().required().messages({
     "string.empty": "Category is required",
   }),
-  description: Joi.string().required().messages({
+  description: Joi.string().optional().empty("-").messages({
     "string.empty": "Description is required",
   }),
   content: Joi.string().required().messages({

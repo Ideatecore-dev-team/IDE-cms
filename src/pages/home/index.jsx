@@ -58,6 +58,7 @@ const Home = () => {
         type: "area",
         height: 350,
       },
+      colors: ["#c82121", "#212529"], // Primary (Bootstrap Blue) and Dark (Bootstrap Dark)
       dataLabels: {
         enabled: false,
       },
@@ -84,12 +85,12 @@ const Home = () => {
 
     chartSeries = [
       {
-        name: "Total Requests",
-        data: totalRequestsData,
-      },
-      {
         name: "Unique Visitors",
         data: uniqueVisitorsData,
+      },
+      {
+        name: "Total Requests",
+        data: totalRequestsData,
       },
     ];
   }
@@ -115,7 +116,7 @@ const Home = () => {
         {dataMetric && (
           <Row className="mb-4">
             <Col md={6} sm={12} className="mb-3">
-              <Card bg="success" text="white">
+              <Card bg="primary" text="white">
                 <Card.Body>
                   <Card.Title className="text-center fs-3 fw-bold">
                     Total Unique Visitor
@@ -128,7 +129,7 @@ const Home = () => {
             </Col>
 
             <Col md={6} sm={12}>
-              <Card bg="info" text="white">
+              <Card bg="dark" text="white">
                 <Card.Body>
                   <Card.Title className="text-center fs-3 fw-bold">
                     Total Request

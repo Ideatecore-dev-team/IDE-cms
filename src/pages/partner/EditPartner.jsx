@@ -118,7 +118,7 @@ const EditPartner = () => {
               </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="link" className="mb-3">
+            {/* <Form.Group controlId="link" className="mb-3">
               <Form.Label>Link</Form.Label>
               <Form.Control
                 type="text"
@@ -130,7 +130,7 @@ const EditPartner = () => {
                   {errors.link && errors.link.message}
                 </p>
               </Form.Text>
-            </Form.Group>
+            </Form.Group> */}
 
             <Button
               type="submit"

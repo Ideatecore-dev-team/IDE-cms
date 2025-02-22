@@ -100,7 +100,7 @@ const EditAboutUs = () => {
               className="text-decoration-none"
             >
               <Button variant="primary" className="btn-sm">
-                <MdAddBox className="fs-4" /> Tambah Kategori
+                <MdAddBox className="fs-4" /> Tambah Divisi
               </Button>
             </Link>
           </Col>

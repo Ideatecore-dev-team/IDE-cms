@@ -23,6 +23,9 @@ const AddPartner = () => {
   } = useForm({
     mode: "onChange",
     resolver: joiResolver(createPartnerSchema),
+    defaultValues: {
+      link: "-",
+    },
   });
 
   const handleCreatePartnerSubmit = async (data) => {
@@ -97,7 +100,7 @@ const AddPartner = () => {
               </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="link" className="mb-3">
+            {/* <Form.Group controlId="link" className="mb-3">
               <Form.Label>Link</Form.Label>
               <Form.Control
                 type="text"
@@ -109,7 +112,7 @@ const AddPartner = () => {
                   {errors.link && errors.link.message}
                 </p>
               </Form.Text>
-            </Form.Group>
+            </Form.Group> */}
 
             <Button
               type="submit"
