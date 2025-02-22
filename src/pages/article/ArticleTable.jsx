@@ -44,8 +44,8 @@ const ArticleTable = ({ articles, handleShow }) => {
                 <Row className="gap-2">
                   <Col className="p-0">
                     <Link
-                      to={`/article/view/${article.id}`}
-                      // target="_blank"
+                      to={`https://theideindonesia.id/article/${article.id}`}
+                      target="_blank"
                       className="text-decoration-none"
                     >
                       <Button variant="success" className="btn-sm px-1">

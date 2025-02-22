@@ -143,8 +143,8 @@ const Article = () => {
 
       {/* Modal for Deleting User */}
       <Modal show={showModal} onHide={handleClose} centered>
-        <Modal.Header closeButton>Confirm Delete User</Modal.Header>
-        <Modal.Body>Are you sure want to delete this user</Modal.Body>
+        <Modal.Header closeButton>Confirm Delete article</Modal.Header>
+        <Modal.Body>Are you sure want to delete this article</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             No
