@@ -15,10 +15,10 @@ const TextEditor = ({ handleEditorChange }) => {
           toolbar: {
             container: [
               // Toolbar options for formatting
-              [{ font: [] }], // Font options (updated whitelist)
-              [{ header: [1, 2, 3, 4, 5, 6, false] }], // Header options
-              [{ size: ["small", false, "large", "huge"] }], // Font size options
-              [{ align: [] }], // Text alignment options (left, center, right)
+              // [{ font: [] }], // Font options (updated whitelist)
+              // [{ header: [1, 2, 3, 4, 5, 6, false] }], // Header options
+              // [{ size: ["small", false, "large", "huge"] }], // Font size options
+              // [{ align: [] }], // Text alignment options (left, center, right)
               ["bold", "italic", "underline", "strike"], // Basic formatting options
               [{ list: "ordered" }, { list: "bullet" }], // Ordered and bulleted lists
               ["link", "image"], // Link and image insertion options
@@ -41,10 +41,10 @@ const TextEditor = ({ handleEditorChange }) => {
 
         formats: [
           // Supported editor formats
-          "font",
-          "header",
-          "size",
-          "align",
+          // "font",
+          // "header",
+          // "size",
+          // "align",
           "bold",
           "italic",
           "underline",

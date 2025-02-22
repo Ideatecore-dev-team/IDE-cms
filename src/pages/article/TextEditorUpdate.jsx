@@ -58,7 +58,7 @@ const TextEditorUpdate = ({ value, onChange }) => {
           },
         },
 
-      formats: [
+        formats: [
           // Supported editor formats
           // "font",
           // "header",
