@@ -135,14 +135,14 @@ const Sidebar = () => {
           Partner
         </NavLink>
 
-        <NavLink
+        {/* <NavLink
           to="/ourprogram"
           className={handleActiveNav}
           aria-label="Our Program"
         >
           <MdEmojiPeople className="me-2 fs-4" />
           Our Program
-        </NavLink>
+        </NavLink> */}
 
         <NavLink
           to="/subscribe"
