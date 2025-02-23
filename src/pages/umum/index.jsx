@@ -9,6 +9,14 @@ import {
 } from "../../services/apis/companyInfoApi";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import {
+  SiFacebook,
+  SiInstagram,
+  SiX,
+  SiLinkedin,
+  SiYoutube,
+  SiTiktok,
+  } from "react-icons/si"
 
 const Umum = () => {
   const { data: dataCompanyInfo } = useGetCompanyInfoQuery();
@@ -170,7 +178,7 @@ const Umum = () => {
 
             {/* Facebook */}
             <Form.Group className="mb-2">
-              <Form.Label>Facebook</Form.Label>
+              <Form.Label><SiFacebook/></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Masukan Facebook"
@@ -185,7 +193,7 @@ const Umum = () => {
 
             {/* Instagram */}
             <Form.Group className="mb-2">
-              <Form.Label>Instagram</Form.Label>
+              <Form.Label><SiInstagram /></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Masukan Instagram"
@@ -199,8 +207,8 @@ const Umum = () => {
             </Form.Group>
 
             {/* Twitter */}
-            {/* <Form.Group className="mb-2">
-              <Form.Label>Twitter</Form.Label>
+            <Form.Group className="mb-2">
+              <Form.Label><SiX /> </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Masukan Twitter"
@@ -211,11 +219,11 @@ const Umum = () => {
                   {errors.Twitter && errors.Twitter.message}
                 </p>
               </Form.Text>
-            </Form.Group> */}
+            </Form.Group>
 
             {/* Linkedin */}
             <Form.Group className="mb-2">
-              <Form.Label>Linkedin</Form.Label>
+              <Form.Label><SiLinkedin /></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Masukan Linkedin"
@@ -230,7 +238,7 @@ const Umum = () => {
 
             {/* Youtube */}
             <Form.Group className="mb-2">
-              <Form.Label>Youtube</Form.Label>
+              <Form.Label><SiYoutube /></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Masukan Youtube"
@@ -244,8 +252,8 @@ const Umum = () => {
             </Form.Group>
 
             {/* Tiktok */}
-            {/* <Form.Group className="mb-2">
-              <Form.Label>Tiktok</Form.Label>
+            <Form.Group className="mb-2">
+              <Form.Label><SiTiktok /></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Masukan Tiktok"
@@ -256,7 +264,7 @@ const Umum = () => {
                   {errors.Tiktok && errors.Tiktok.message}
                 </p>
               </Form.Text>
-            </Form.Group> */}
+            </Form.Group>
 
             <Button
               type="submit"
