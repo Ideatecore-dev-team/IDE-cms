@@ -16,7 +16,7 @@ const TextEditor = ({ handleEditorChange }) => {
             container: [
               // Toolbar options for formatting
               // [{ font: [] }], // Font options (updated whitelist)
-              // [{ header: [1, 2, 3, 4, 5, 6, false] }], // Header options
+              [{ header: [1, 2, 3, 4, 5, 6, false] }], // Header options
               // [{ size: ["small", false, "large", "huge"] }], // Font size options
               // [{ align: [] }], // Text alignment options (left, center, right)
               ["bold", "italic", "underline", "strike"], // Basic formatting options
@@ -42,7 +42,7 @@ const TextEditor = ({ handleEditorChange }) => {
         formats: [
           // Supported editor formats
           // "font",
-          // "header",
+          "header",
           // "size",
           // "align",
           "bold",
