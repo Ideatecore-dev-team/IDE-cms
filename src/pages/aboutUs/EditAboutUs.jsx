@@ -109,7 +109,7 @@ const EditAboutUs = () => {
         <Row>
           <Form onSubmit={handleSubmit(handleEditTeam)}>
             <Form.Group controlId="image" className="mb-3">
-              <Form.Label>Thumbnail Artikel</Form.Label>
+              <Form.Label>Foto Team</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Masukan url gambar"
