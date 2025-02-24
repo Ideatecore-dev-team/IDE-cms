@@ -22,7 +22,13 @@ import {
   MdAccountBalance,
   MdContactPage,
   MdSubscriptions,
+  MdAccountBox,
+  MdConnectWithoutContact,
+  MdMessage,
 } from "react-icons/md";
+import { AiFillDashboard } from "react-icons/ai";
+import { RiTeamFill } from "react-icons/ri";
+import { PiArticleNyTimesFill } from "react-icons/pi";
 
 const Sidebar = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -94,53 +100,74 @@ const Sidebar = () => {
             className="w-75 ms-3"
           ></Image>
         </Link>
-        <NavLink to="/" className={handleActiveNav} aria-label="Home">
-          <MdHome className="me-2 fs-4" />
-          Home
-        </NavLink>
-        <NavLink
-          to="/aboutus"
-          className={handleActiveNav}
-          aria-label="About Us"
-        >
-          <MdInfo className="me-2 fs-4" />
-          About Us
-        </NavLink>
         {userInfo?.role === "SUPER_ADMIN" && (
           <NavLink to="/acount" className={handleActiveNav} aria-label="Akun">
-            <MdPeople className="me-2 fs-4" />
+            <MdAccountBox className="me-2 fs-4" />
             Akun
           </NavLink>
         )}
-        <NavLink to="/article" className={handleActiveNav} aria-label="Artikel">
-          <MdArticle className="me-2 fs-4" />
-          Artikel
+        <NavLink to="/" className={handleActiveNav} aria-label="Dashboard">
+          <AiFillDashboard className="me-2 fs-4" />
+          Dashboard
         </NavLink>
-
         <NavLink
           to="/contactus"
           className={handleActiveNav}
           aria-label="Contact Us"
         >
-          <MdContactPage className="me-2 fs-4" />
-          Contact Us
+          <MdMessage className="me-2 fs-4" />
+          Pesan
         </NavLink>
 
-        <NavLink to="/gallery" className={handleActiveNav} aria-label="Gallery">
-          <MdImage className="me-2 fs-4" />
-          Gallery
+        <NavLink
+          to="/subscribe"
+          className={handleActiveNav}
+          aria-label="Subscribe"
+        >
+          <MdSubscriptions className="me-2 fs-4" />
+          Subscribe
         </NavLink>
 
         <NavLink to="/media" className={handleActiveNav} aria-label="Media">
           <MdOutlinePhotoSizeSelectActual className="me-2 fs-4" />
           Media
         </NavLink>
+
+
+{/* HOME */}
+        <NavLink to="/" className={handleActiveNav} aria-label="Home">
+          <MdHome className="me-2 fs-4" />
+          Home
+        </NavLink>
+
+{/* OUR TEAM */}
+        <NavLink
+          to="/aboutus"
+          className={handleActiveNav}
+          aria-label="About Us"
+        >
+          <RiTeamFill className="me-2 fs-4" />
+          Our Team
+        </NavLink>
+
+{/* GALLERY */}
+        <NavLink to="/gallery" className={handleActiveNav} aria-label="Gallery">
+          <MdImage className="me-2 fs-4" />
+          Gallery
+        </NavLink>
+
+
+        <NavLink to="/article" className={handleActiveNav} aria-label="Artikel">
+          <PiArticleNyTimesFill className="me-2 fs-4" />
+          Artikel
+        </NavLink>
+
         <NavLink
           to="/partner"
           className={handleActiveNav}
           aria-label="Our Partner"
         >
-          <MdAccountBalance className="me-2 fs-4" />
+          <MdConnectWithoutContact className="me-2 fs-4" />
           Partner
         </NavLink>
 
@@ -153,18 +180,9 @@ const Sidebar = () => {
           Our Program
         </NavLink> */}
 
-        <NavLink
-          to="/subscribe"
-          className={handleActiveNav}
-          aria-label="Subscribe"
-        >
-          <MdSubscriptions className="me-2 fs-4" />
-          Subscribe
-        </NavLink>
-
         <NavLink to="/umum" className={handleActiveNav} aria-label="Umum">
           <MdDashboard className="me-2 fs-4" />
-          Umum
+          Contact & Social Media
         </NavLink>
       </Col>
 
