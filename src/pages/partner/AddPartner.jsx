@@ -44,7 +44,7 @@ const AddPartner = () => {
       <Container>
         <Row>
           <Col>
-            <h1>Tambah Our Team</h1>
+            <h1>Tambah Partner</h1>
             <p className="lead">Masukan data pada field yang tertera</p>
           </Col>
         </Row>
