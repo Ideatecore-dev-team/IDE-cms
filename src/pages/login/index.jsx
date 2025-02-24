@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useLoginMutation } from "../../services/apis/authApi";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { loginSchema } from "./schema/loginSchema ";
-import { setUserInfo } from "../../services/reducers/authSlice";
+import { removeUserInfo, setUserInfo } from "../../services/reducers/authSlice";
 import {
   Button,
   Col,
@@ -44,6 +44,7 @@ const Login = () => {
 
   const loginSubmit = async (data) => {
     try {
+      dispatch(removeUserInfo());
       const res = await login(data).unwrap();
       dispatch(setUserInfo(res.data));
       toast.success("Login success");

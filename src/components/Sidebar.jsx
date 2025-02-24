@@ -1,5 +1,5 @@
 import { Button, Col, Row, Spinner, Modal, Image } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useGetUserQuery, useLogoutMutation } from "../services/apis/authApi";
 import apiSlice from "../services/apis/apiSlice";
@@ -13,7 +13,7 @@ import {
   MdDashboard,
   MdHome,
   MdInfo,
-  MdEmojiPeople,
+  // MdEmojiPeople,
   MdImage,
   MdArticle,
   MdOutlinePhotoSizeSelectActual,
@@ -25,13 +25,22 @@ import {
 } from "react-icons/md";
 
 const Sidebar = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isLoading } = useGetUserQuery();
-  const [logout, { isLoading: isLoadingLogout }] = useLogoutMutation();
 
-  const { userInfo } = useSelector((state) => state.auth);
+  const { isLoading, error } = useGetUserQuery();
+
+  useEffect(() => {
+    if (error?.status === 401) {
+      dispatch(removeUserInfo());
+      // toast.success("Logout success");
+      navigate("/login");
+    }
+  }, [error, dispatch, navigate]);
+
+  const [logout, { isLoading: isLoadingLogout }] = useLogoutMutation();
 
   // Open and close modal
   const handleShow = () => setShowModal(true);

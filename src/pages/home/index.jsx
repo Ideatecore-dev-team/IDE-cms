@@ -33,7 +33,14 @@ const Home = () => {
 
   // Show error message if any query fails
   if (isErrorUser || isErrorMetric) {
-    return <div>Error loading data.</div>;
+    return (
+      <Container
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: "100vh" }}
+      >
+        Error loading data.
+      </Container>
+    );
   }
 
   // Prepare chart configuration if metric data is available
