@@ -28,7 +28,7 @@ const AboutUs = () => {
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [dataQuery, setDataQuery] = useState({
     page: 1,
-    size: 10,
+    size: 4,
   });
 
   const handlePaginationChange = (page) => {
