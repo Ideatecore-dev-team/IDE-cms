@@ -44,11 +44,11 @@ const Gallery = () => {
   };
 
   const imageSizeRecomendation = {
-    topLeft: "170 X 250 px",
-    bottomLeft: "170 X 100 px",
-    center: "170 X 358 px",
-    topRight: "170 X 100 px",
-    bottomRight: "170 X 250 px",
+    topLeft: "(392 X 575px)",
+    bottomLeft: "(392 x 225px)",
+    center: "(392 x 824px)",
+    topRight: "(392 x 225px)",
+    bottomRight: "(392 X 575px)",
   };
 
   const getImage = (position) => {
@@ -74,7 +74,7 @@ const Gallery = () => {
         id: selectedGalleryId,
         data: { ...formData },
       }).unwrap();
-      toast.success("Update category success");
+      toast.success("ubah kategori berhasil");
     } catch (error) {
       toast.error(error?.data?.message || error?.error);
     } finally {
@@ -216,12 +216,12 @@ const Gallery = () => {
         </Row>
       </Container>
       <Modal show={showModal} onHide={handleClose} centered>
-        <Modal.Header closeButton>Update Gallery</Modal.Header>
+        <Modal.Header closeButton>Mengubah Gallery</Modal.Header>
         <Modal.Body>
-          Are you sure you want to update gallery?
+          Anda yakin ingin merubah gambar Gallery?
           <p>
-            Our Recomendation size for this image is{" "}
-            {selectedPosition && imageSizeRecomendation[selectedPosition]}
+            Ukuran yang kami sarankan untuk gambar ini{" "}
+            <strong className=" text-danger">{selectedPosition && imageSizeRecomendation[selectedPosition]}</strong>
           </p>
           <Form onSubmit={handleSubmit(handleUpdateGallery)}>
             <Form.Group className="my-3">
@@ -248,7 +248,7 @@ const Gallery = () => {
               {isLoadingUpdate ? (
                 <span className="spinner-border spinner-border-sm"></span>
               ) : (
-                "Update"
+                "Ubah"
               )}
             </Button>
           </Form>

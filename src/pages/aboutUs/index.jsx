@@ -134,7 +134,8 @@ const AboutUs = () => {
                       </th>
                       <td className="align-middle">{team.name}</td>
                       <td className="align-middle">{team.CategoryTeam.name}</td>
-                      <td className="align-middle w-25">
+                      {/* atur size */}
+                      <td className="align-middle w-10"> 
                         <Image fluid src={team.image} alt={team.name} />
                       </td>
                       <td className="align-middle">

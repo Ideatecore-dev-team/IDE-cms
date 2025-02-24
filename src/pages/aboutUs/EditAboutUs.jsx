@@ -86,7 +86,7 @@ const EditAboutUs = () => {
       <Container>
         <Row>
           <Col>
-            <h1>Tambah Our Team</h1>
+            <h1>Ubah Our Team</h1>
             <p className="lead">Masukan data pada field yang tertera</p>
           </Col>
         </Row>
@@ -117,6 +117,7 @@ const EditAboutUs = () => {
                 onChange={(e) => setImagePreview(e.target.value)}
               />
               <Form.Text>
+              <span className=" text-center align-middle">ukuran disarankan <strong className="text-danger">(270 x 290px)</strong></span>
                 <p className="text-danger isErrorMessage">
                   {errors.image && errors.image.message}
                 </p>
@@ -134,8 +135,10 @@ const EditAboutUs = () => {
                     }}
                   />
                 </div>
-              )}
+                
+                )}
             </Form.Group>
+
 
             <Form.Group controlId="name" className="mb-3">
               <Form.Label>Nama</Form.Label>

@@ -93,6 +93,7 @@ const AddAboutUs = () => {
                 onChange={(e) => setImageUrl(e.target.value)}
               />
               <Form.Text>
+              <span>ukuran disarankan <strong className="text-danger">(270 x 290px)</strong></span>
                 <p className="text-danger isErrorMessage">
                   {errors.image && errors.image.message}
                 </p>

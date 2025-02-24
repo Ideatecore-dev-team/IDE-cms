@@ -9,18 +9,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import IDELogo from "../assets/images/IDELogo.png";
 import {
-  MdPeople,
   MdDashboard,
   MdHome,
-  MdInfo,
-  // MdEmojiPeople,
   MdImage,
-  MdArticle,
   MdOutlinePhotoSizeSelectActual,
   MdAccountCircle,
   MdLogout,
-  MdAccountBalance,
-  MdContactPage,
   MdSubscriptions,
   MdAccountBox,
   MdConnectWithoutContact,
@@ -159,7 +153,7 @@ const Sidebar = () => {
 
         <NavLink to="/article" className={handleActiveNav} aria-label="Artikel">
           <PiArticleNyTimesFill className="me-2 fs-4" />
-          Artikel
+          Article
         </NavLink>
 
         <NavLink

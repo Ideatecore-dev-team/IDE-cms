@@ -107,6 +107,7 @@ const AddArticle = () => {
                   onChange={(e) => setImageUrl(e.target.value)}
                 />
                 <Form.Text>
+                <span className=" text-center align-middle">Ukuran disarankan: <strong className="text-danger">(1224 x 889px)</strong></span>
                   <p className="text-danger isErrorMessage">
                     {errors.image && errors.image.message}
                   </p>

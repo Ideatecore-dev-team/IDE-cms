@@ -81,7 +81,7 @@ const EditArticle = () => {
       <Container>
         <Row className="border-bottom border-secondary mb-3">
           <Col className="px-0">
-            <h1>Edit Artikel</h1>
+            <h1>Ubah Artikel</h1>
             <p className="lead">Masukan data pada field yang tertera</p>
           </Col>
         </Row>
@@ -115,6 +115,7 @@ const EditArticle = () => {
                       setImagePreview(e.target.value);
                     }}
                   ></Form.Control>
+                  <span className="small text-center align-middle">Ukuran disarankan: <strong className="text-danger">(1224 x 889px)</strong></span>
                   {imagePreview && (
                     <div className="mt-3 d-flex justify-content-center">
                       <Image
