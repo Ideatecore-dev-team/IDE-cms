@@ -123,10 +123,10 @@ const AddCategoryTeam = () => {
           <Col>
             <Form onSubmit={handleSubmit(handleCreateTeamCategory)}>
               <Form.Group className="mb-3">
-                <Form.Label>Team Divisi</Form.Label>
+                <Form.Label>Divisi Team</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter new divisi"
+                  placeholder="Masukan Divisi yang baru"
                   {...register("name")}
                 ></Form.Control>
                 <Form.Text>
@@ -181,13 +181,13 @@ const AddCategoryTeam = () => {
       {/* Modal for Deleting User */}
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          Confirm update or delete category
+          Konfirmasi ubah atau hapus divisi
         </Modal.Header>
         <Modal.Body>
-          Are you sure want to update or delete this category
+          Apakah Anda yakin ingin mengubah atau menghapus divisi ini?
           <Form onSubmit={handleSubmitUpdate(handleUpdateCategory)}>
             <Form.Group className="mb-3">
-              <Form.Label>Category</Form.Label>
+              <Form.Label>Divisi</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter category"
@@ -209,14 +209,14 @@ const AddCategoryTeam = () => {
               {isLoadingUpdate || isLoadingDelete ? (
                 <span className="spinner-border spinner-border-sm"></span>
               ) : (
-                "Update"
+                "Ubah"
               )}
             </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Tutup
           </Button>
           <Button
             variant="primary"
@@ -227,7 +227,7 @@ const AddCategoryTeam = () => {
             {isLoadingDelete || isLoadingUpdate ? (
               <Spinner animation="border" variant="outline" size="sm" />
             ) : (
-              "Delete"
+              "Hapus"
             )}
           </Button>
         </Modal.Footer>
